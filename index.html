@@ -42,6 +42,32 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;
 .nav-brand span{color:var(--lava);}
 .nav-cta{background:var(--lava);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;padding:10px 22px;border-radius:8px;text-decoration:none;transition:opacity .2s;}
 .nav-cta:hover{opacity:.85;}
+  .nav-tool{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:var(--muted);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:14px;
+  font-weight:600;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:color .2s;
+}
+
+.nav-tool span{
+  color:var(--lava);
+  font-size:17px;
+  transition:transform .2s;
+}
+
+.nav-tool:hover{
+  color:var(--ink);
+}
+
+.nav-tool:hover span{
+  transform:translateX(3px);
+}
 
 /* ─── HERO ─── */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 24px 80px;position:relative;overflow:hidden;}
@@ -260,16 +286,9 @@ footer a{color:var(--steel);}
 
     <div style="display:flex; align-items:center; gap:10px;">
       
-      <a href="/calculadora/"
-         style="color:#E8740A;
-                border:1px solid rgba(232,116,10,.55);
-                padding:9px 16px;
-                border-radius:8px;
-                text-decoration:none;
-                font-weight:700;
-                font-size:14px;">
-        ⚙ Calculadora
-      </a>
+     <a href="/calculadora/" class="nav-tool">
+  Calculadora <span>→</span>
+</a>
 
       <a href="#precos" class="nav-cta">
         Quero me inscrever
