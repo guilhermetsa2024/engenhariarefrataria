@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Calculadora de Desgaste | Engenharia de Refratários</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #090B11;
+    --s1: #10141E;
+    --s2: #161B26;
+    --lava: #E8740A;
+    --lava-d: rgba(232,116,10,.13);
+    --ink: #EDE8E1;
+    --muted: #7A8194;
+    --steel: #4E8BAB;
+    --hair: rgba(255,255,255,.08);
+    --green: #4aa578;
+    --red: #d45d5d;
+    --radius: 14px;
+}
+
+body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.55;
+}
+
+.wrap {
+    max-width: 1120px;
+    margin: auto;
+    padding: 0 24px;
+}
+
+/* MENU */
+
+nav {
+    border-bottom: 1px solid var(--hair);
+    background: rgba(9,11,17,.95);
+}
+
+.nav-inner {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+}
+
+.brand span {
+    color: var(--lava);
+}
+
+.back {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back:hover {
+    color: var(--ink);
+}
+
+/* HERO */
+
+.hero {
+    padding: 72px 0 42px;
+}
+
+.eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--lava);
+}
+
+h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px,6vw,68px);
+    line-height: 1.02;
+    margin: 12px 0 18px;
+    max-width: 850px;
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 760px;
+    font-size: 17px;
+}
+
+/* LAYOUT */
+
+.layout {
+    display: grid;
+    grid-template-columns: 390px 1fr;
+    gap: 22px;
+    padding-bottom: 80px;
+}
+
+@media(max-width:900px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card {
+    background: var(--s1);
+    border: 1px solid var(--hair);
+    border-radius: var(--radius);
+    padding: 26px;
+}
+
+.card h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 25px;
+    margin-bottom: 4px;
+}
+
+.hint {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+/* FORMULÁRIO */
+
+label {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    margin: 14px 0 6px;
+}
+
+input {
+    width: 100%;
+    background: var(--s2);
+    border: 1px solid var(--hair);
+    color: var(--ink);
+    border-radius: 9px;
+    padding: 13px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--lava);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.measure {
+    display: grid;
+    grid-template-columns: 1fr 1fr 38px;
+    gap: 8px;
+    align-items: end;
+    margin-bottom: 8px;
+}
+
+.measure button {
+    height: 43px;
+    border: 1px solid var(--hair);
+    background: transparent;
+    color: var(--muted);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button.primary,
+button.secondary {
+    width: 100%;
+    padding: 13px;
+    border-radius: 9px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+button.primary {
+    border: 0;
+    background: var(--lava);
+    color: white;
+    margin-top: 18px;
+}
+
+button.secondary {
+    border: 1px solid var(--hair);
+    background: transparent;
+    color: var(--ink);
+    margin-top: 9px;
+}
+
+.message {
+    font-size: 13px;
+    margin-top: 12px;
+    color: var(--red);
+    min-height: 20px;
+}
+
+/* RESULTADOS */
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+@media(max-width:560px) {
+    .results {
+        grid-template-columns: 1fr;
+    }
+}
+
+.metric {
+    background: var(--s2);
+    border: 1px solid var(--hair);
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.metric .lbl {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.metric .val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 31px;
+    margin-top: 3px;
+}
+
+.metric .sub {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* STATUS */
+
+.status {
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+    border: 1px solid var(--hair);
+    background: var(--s2);
+}
+
+.status strong {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.status.ok strong {
+    color: var(--green);
+}
+
+.status.warn strong {
+    color: var(--lava);
+}
+
+.status.bad strong {
+    color: var(--red);
+}
+
+/* GRÁFICO */
+
+.chartbox {
+    background: var(--s2);
+    border: 1px solid var(--hair);
+    border-radius: 12px;
+    padding: 14px;
+    overflow: hidden;
+}
+
+canvas {
+    width: 100%;
+    height: 360px;
+    display: block;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.dot {
+    display: inline-block;
+    width: 18px;
+    height: 3px;
+    margin-right: 6px;
+    vertical-align: middle;
+    border-radius: 2px;
+}
+
+.linear {
+    background: var(--steel);
+}
+
+.exp {
+    background: var(--lava);
+}
+
+.limit {
+    background: var(--red);
+}
+
+.model {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--hair);
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.model b {
+    color: var(--ink);
+}
+
+footer {
+    border-top: 1px solid var(--hair);
+    padding: 32px 0;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="wrap nav-inner">
+
+        <div class="brand">
+            <span>⬡</span>
+            Engenhariarefrataria<span>.</span>com
+        </div>
+
+        <a class="back" href="../">
+            ← Voltar ao curso
+        </a>
+
+    </div>
+</nav>
+
+
+<div class="wrap">
+
+<section class="hero">
+
+    <p class="eyebrow">
+        Ferramenta técnica gratuita
+    </p>
+
+    <h1>
+        Calculadora de vida do revestimento refratário.
+    </h1>
+
+    <p>
+        Insira as medições de espessura ao longo da campanha.
+        A ferramenta estima taxa de desgaste, vida até o limite
+        de segurança e compara projeções linear e exponencial.
+    </p>
+
+</section>
+
+
+<div class="layout">
+
+<!-- PAINEL DE ENTRADA -->
+
+<section class="card">
+
+    <h2>Dados da campanha</h2>
+
+    <p class="hint">
+        Use pelo menos duas medições.
+        A medição em 0 corridas pode representar a espessura inicial.
+    </p>
+
+
+    <div class="row">
+
+        <div>
+
+            <label for="limit">
+                Limite de segurança (mm)
+            </label>
+
+            <input
+                id="limit"
+                type="number"
+                min="0"
+                step="0.1"
+                value="60">
+
+        </div>
+
+
+        <div>
+
+            <label for="target">
+                Meta de campanha (corridas)
+            </label>
+
+            <input
+                id="target"
+                type="number"
+                min="1"
+                step="1"
+                value="120">
+
+        </div>
+
+    </div>
+
+
+    <div id="measurements"></div>
+
+
+    <button
+        class="secondary"
+        id="add"
+        type="button">
+
+        + Adicionar medição
+
+    </button>
+
+
+    <button
+        class="primary"
+        id="calc"
+        type="button">
+
+        Calcular projeção
+
+    </button>
+
+
+    <div
+        class="message"
+        id="message"
+        aria-live="polite">
+    </div>
+
+</section>
+
+
+<!-- RESULTADOS -->
+
+<section class="card">
+
+    <h2>Projeção da campanha</h2>
+
+    <p class="hint">
+        Resultados calculados a partir das medições informadas.
+    </p>
+
+
+    <div class="results">
+
+
+        <div class="metric">
+
+            <div class="lbl">
+                Taxa média observada
+            </div>
+
+            <div
+                class="val"
+                id="rate">
+                —
+            </div>
+
+            <div class="sub">
+                mm/corrida
+            </div>
+
+        </div>
+
+
+        <div class="metric">
+
+            <div class="lbl">
+                Vida projetada · linear
+            </div>
+
+            <div
+                class="val"
+                id="lifeLinear">
+                —
+            </div>
+
+            <div class="sub">
+                corridas até o limite
+            </div>
+
+        </div>
+
+
+        <div class="metric">
+
+            <div class="lbl">
+                Vida projetada · exponencial
+            </div>
+
+            <div
+                class="val"
+                id="lifeExp">
+                —
+            </div>
+
+            <div class="sub">
+                corridas até o limite
+            </div>
+
+        </div>
+
+
+        <div class="metric">
+
+            <div class="lbl">
+                Espessura na meta
+            </div>
+
+            <div
+                class="val"
+                id="atTarget">
+                —
+            </div>
+
+            <div class="sub">
+                modelo com melhor R²
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="status"
+        id="status">
+
+        <strong>
+            Aguardando cálculo
+        </strong>
+
+        <span>
+            Informe as medições e clique em calcular.
+        </span>
+
+    </div>
+
+
+    <div class="chartbox">
+
+        <canvas
+            id="chart"
+            width="720"
+            height="360">
+        </canvas>
+
+
+        <div class="legend">
+
+            <span>
+                <i class="dot linear"></i>
+                Linear
+            </span>
+
+            <span>
+                <i class="dot exp"></i>
+                Exponencial
+            </span>
+
+            <span>
+                <i class="dot limit"></i>
+                Limite de segurança
+            </span>
+
+            <span>
+                ● Medições reais
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="model"
+        id="model">
+
+        O ajuste compara os modelos
+        <b>linear</b> e
+        <b>exponencial</b>
+        pelo coeficiente R².
+
+        A projeção é uma estimativa matemática
+        e não substitui inspeção,
+        critérios de segurança ou
+        avaliação de engenharia.
+
+    </div>
+
+</section>
+
+</div>
+</div>
+
+
+<footer>
+
+    <div class="wrap">
+
+        © 2026 Engenhariarefrataria.com
+        · Ferramenta educacional de apoio à engenharia
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================================
+   MEDIÇÕES
+========================================= */
+
+const box =
+    document.getElementById('measurements');
+
+
+function addRow(x = '', y = '') {
+
+    const d =
+        document.createElement('div');
+
+    d.className = 'measure';
+
+
+    d.innerHTML = `
+
+        <div>
+
+            <label>
+                Corridas
+            </label>
+
+            <input
+                class="x"
+                type="number"
+                min="0"
+                step="1"
+                value="${x}">
+
+        </div>
+
+
+        <div>
+
+            <label>
+                Espessura (mm)
+            </label>
+
+            <input
+                class="y"
+                type="number"
+                min="0.01"
+                step="0.1"
+                value="${y}">
+
+        </div>
+
+
+        <button
+            type="button"
+            title="Remover medição">
+
+            ×
+
+        </button>
+
+    `;
+
+
+    d.querySelector('button')
+        .addEventListener(
+            'click',
+            () => {
+
+                if (box.children.length > 2) {
+                    d.remove();
+                }
+
+            }
+        );
+
+
+    box.appendChild(d);
+
+}
+
+
+/* Dados de exemplo */
+
+addRow(0,171);
+addRow(70,105);
+addRow(90,88);
+
+
+document
+    .getElementById('add')
+    .addEventListener(
+        'click',
+        () => addRow()
+    );
+
+
+/* =========================================
+   REGRESSÃO LINEAR
+========================================= */
+
+function linReg(P) {
+
+    let n = P.length;
+
+    let sx = 0;
+    let sy = 0;
+    let sxx = 0;
+    let sxy = 0;
+
+
+    P.forEach(p => {
+
+        sx += p.x;
+        sy += p.y;
+
+        sxx += p.x * p.x;
+        sxy += p.x * p.y;
+
+    });
+
+
+    let den =
+        n * sxx -
+        sx * sx;
+
+
+    if (!den) {
+        return null;
+    }
+
+
+    let b =
+        (
+            n * sxy -
+            sx * sy
+        ) / den;
+
+
+    let a =
+        (
+            sy -
+            b * sx
+        ) / n;
+
+
+    let mean =
+        sy / n;
+
+
+    let ssTot = 0;
+    let ssRes = 0;
+
+
+    P.forEach(p => {
+
+        let yh =
+            a +
+            b * p.x;
+
+
+        ssTot +=
+            (p.y - mean) ** 2;
+
+
+        ssRes +=
+            (p.y - yh) ** 2;
+
+    });
+
+
+    return {
+
+        a: a,
+
+        b: b,
+
+        r2:
+            ssTot
+                ? 1 - ssRes / ssTot
+                : 1,
+
+        pred:
+            x => a + b * x
+
+    };
+
+}
+
+
+/* =========================================
+   REGRESSÃO EXPONENCIAL
+========================================= */
+
+function expReg(P) {
+
+    if (
+        P.some(
+            p => p.y <= 0
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    let L =
+        P.map(
+            p => ({
+                x: p.x,
+                y: Math.log(p.y)
+            })
+        );
+
+
+    let r =
+        linReg(L);
+
+
+    if (!r) {
+        return null;
+    }
+
+
+    let A =
+        Math.exp(r.a);
+
+
+    let k =
+        r.b;
+
+
+    let mean =
+        P.reduce(
+            (s,p) => s + p.y,
+            0
+        ) / P.length;
+
+
+    let tot = 0;
+    let res = 0;
+
+
+    P.forEach(p => {
+
+        let yh =
+            A *
+            Math.exp(
+                k * p.x
+            );
+
+
+        tot +=
+            (p.y - mean) ** 2;
+
+
+        res +=
+            (p.y - yh) ** 2;
+
+    });
+
+
+    return {
+
+        A: A,
+
+        k: k,
+
+        r2:
+            tot
+                ? 1 - res / tot
+                : 1,
+
+        pred:
+            x =>
+                A *
+                Math.exp(
+                    k * x
+                )
+
+    };
+
+}
+
+
+/* =========================================
+   VIDA PROJETADA
+========================================= */
+
+function lifeLin(r,L) {
+
+    return (
+        r &&
+        r.b < 0
+    )
+        ? (L-r.a) / r.b
+        : null;
+
+}
+
+
+function lifeExp(r,L) {
+
+    return (
+        r &&
+        r.k < 0
+    )
+        ? Math.log(
+            L / r.A
+        ) / r.k
+        : null;
+
+}
+
+
+/* =========================================
+   FORMATAÇÃO
+========================================= */
+
+function fmt(v,d=1) {
+
+    return Number.isFinite(v)
+
+        ? v
+            .toFixed(d)
+            .replace('.',',')
+
+        : '—';
+
+}
+
+
+/* =========================================
+   GRÁFICO
+========================================= */
+
+function draw(
+    P,
+    lin,
+    exp,
+    L,
+    target,
+    l1,
+    l2
+) {
+
+    const c =
+        document.getElementById('chart');
+
+
+    const ctx =
+        c.getContext('2d');
+
+
+    const W =
+        c.width;
+
+
+    const H =
+        c.height;
+
+
+    const pad = {
+
+        l: 54,
+        r: 18,
+        t: 20,
+        b: 42
+
+    };
+
+
+    ctx.clearRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+
+    ctx.fillStyle =
+        '#161B26';
+
+
+    ctx.fillRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+
+    let maxX =
+        Math.max(
+            target,
+            ...P.map(p=>p.x),
+            Number.isFinite(l1) ? l1 : 0,
+            Number.isFinite(l2) ? l2 : 0
+        ) * 1.08;
+
+
+    maxX =
+        Math.max(
+            maxX,
+            10
+        );
+
+
+    let maxY =
+        Math.max(
+            ...P.map(p=>p.y),
+            lin ? lin.pred(0) : 0,
+            exp ? exp.pred(0) : 0
+        ) * 1.12;
+
+
+    let minY = 0;
+
+
+    const X =
+        x =>
+            pad.l +
+            x / maxX *
+            (
+                W -
+                pad.l -
+                pad.r
+            );
+
+
+    const Y =
+        y =>
+            H -
+            pad.b -
+            (
+                y -
+                minY
+            ) /
+            (
+                maxY -
+                minY
+            ) *
+            (
+                H -
+                pad.t -
+                pad.b
+            );
+
+
+    ctx.font =
+        '11px JetBrains Mono';
+
+
+    ctx.fillStyle =
+        '#7A8194';
+
+
+    ctx.strokeStyle =
+        'rgba(255,255,255,.08)';
+
+
+    ctx.lineWidth = 1;
+
+
+    /* Linhas horizontais */
+
+    for (
+        let i=0;
+        i<=5;
+        i++
+    ) {
+
+        let y =
+            maxY *
+            i / 5;
+
+
+        let py =
+            Y(y);
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            pad.l,
+            py
+        );
+
+        ctx.lineTo(
+            W-pad.r,
+            py
+        );
+
+        ctx.stroke();
+
+
+        ctx.fillText(
+            Math.round(y) +
+            ' mm',
+            6,
+            py+4
+        );
+
+    }
+
+
+    /* Eixo X */
+
+    for (
+        let i=0;
+        i<=5;
+        i++
+    ) {
+
+        let x =
+            maxX *
+            i / 5;
+
+
+        let px =
+            X(x);
+
+
+        ctx.fillText(
+            Math.round(x),
+            px-8,
+            H-16
+        );
+
+    }
+
+
+    /* Curvas */
+
+    function curve(
+        pred,
+        color,
+        end=maxX
+    ) {
+
+        ctx.strokeStyle =
+            color;
+
+
+        ctx.lineWidth =
+            2.5;
+
+
+        ctx.beginPath();
+
+
+        for (
+            let i=0;
+            i<=160;
+            i++
+        ) {
+
+            let x =
+                end *
+                i / 160;
+
+
+            let y =
+                pred(x);
+
+
+            if (
+                !Number.isFinite(y)
+            ) {
+                continue;
+            }
+
+
+            let px =
+                X(x);
+
+
+            let py =
+                Y(y);
+
+
+            if (i) {
+
+                ctx.lineTo(
+                    px,
+                    py
+                );
+
+            } else {
+
+                ctx.moveTo(
+                    px,
+                    py
+                );
+
+            }
+
+        }
+
+
+        ctx.stroke();
+
+    }
+
+
+    curve(
+        lin.pred,
+        '#4E8BAB'
+    );
+
+
+    curve(
+        exp.pred,
+        '#E8740A'
+    );
+
+
+    /* Limite de segurança */
+
+    ctx.strokeStyle =
+        '#d45d5d';
+
+
+    ctx.setLineDash(
+        [7,6]
+    );
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+        pad.l,
+        Y(L)
+    );
+
+
+    ctx.lineTo(
+        W-pad.r,
+        Y(L)
+    );
+
+
+    ctx.stroke();
+
+
+    ctx.setLineDash([]);
+
+
+    /* Pontos reais */
+
+    P.forEach(p => {
+
+        ctx.fillStyle =
+            '#EDE8E1';
+
+
+        ctx.beginPath();
+
+
+        ctx.arc(
+            X(p.x),
+            Y(p.y),
+            5,
+            0,
+            Math.PI*2
+        );
+
+
+        ctx.fill();
+
+
+        ctx.strokeStyle =
+            '#090B11';
+
+
+        ctx.lineWidth =
+            2;
+
+
+        ctx.stroke();
+
+    });
+
+
+    ctx.fillStyle =
+        '#7A8194';
+
+
+    ctx.fillText(
+        'corridas',
+        W-68,
+        H-16
+    );
+
+}
+
+
+/* =========================================
+   CÁLCULO PRINCIPAL
+========================================= */
+
+function calculate() {
+
+    const msg =
+        document.getElementById(
+            'message'
+        );
+
+
+    msg.textContent = '';
+
+
+    let P =
+        [
+            ...box.querySelectorAll(
+                '.measure'
+            )
+        ]
+
+        .map(
+            r => ({
+
+                x:
+                    +r.querySelector(
+                        '.x'
+                    ).value,
+
+                y:
+                    +r.querySelector(
+                        '.y'
+                    ).value
+
+            })
+        )
+
+        .filter(
+            p =>
+                Number.isFinite(p.x) &&
+                Number.isFinite(p.y) &&
+                p.x >= 0 &&
+                p.y > 0
+        )
+
+        .sort(
+            (a,b) =>
+                a.x-b.x
+        );
+
+
+    const L =
+        +document.getElementById(
+            'limit'
+        ).value;
+
+
+    const target =
+        +document.getElementById(
+            'target'
+        ).value;
+
+
+    if (
+        P.length < 2 ||
+        !(L > 0) ||
+        !(target > 0)
+    ) {
+
+        msg.textContent =
+            'Informe pelo menos duas medições válidas, limite e meta.';
+
+        return;
+
+    }
+
+
+    if (
+        new Set(
+            P.map(
+                p=>p.x
+            )
+        ).size < 2
+    ) {
+
+        msg.textContent =
+            'As medições precisam ter números de corridas diferentes.';
+
+        return;
+
+    }
+
+
+    const lin =
+        linReg(P);
+
+
+    const exp =
+        expReg(P);
+
+
+    if (
+        !lin ||
+        !exp
+    ) {
+
+        msg.textContent =
+            'Não foi possível ajustar os modelos com esses dados.';
+
+        return;
+
+    }
+
+
+    const first =
+        P[0];
+
+
+    const last =
+        P[P.length-1];
+
+
+    const rate =
+        (
+            first.y -
+            last.y
+        ) /
+        (
+            last.x -
+            first.x
+        );
+
+
+    const l1 =
+        lifeLin(
+            lin,
+            L
+        );
+
+
+    const l2 =
+        lifeExp(
+            exp,
+            L
+        );
+
+
+    const best =
+        exp.r2 >
+        lin.r2
+            ? exp
+            : lin;
+
+
+    const bestName =
+        exp.r2 >
+        lin.r2
+            ? 'Exponencial'
+            : 'Linear';
+
+
+    const predTarget =
+        best.pred(
+            target
+        );
+
+
+    const bestLife =
+        best === exp
+            ? l2
+            : l1;
+
+
+    /* Resultados */
+
+    document
+        .getElementById(
+            'rate'
+        )
+        .textContent =
+            fmt(
+                rate,
+                3
+            );
+
+
+    document
+        .getElementById(
+            'lifeLinear'
+        )
+        .textContent =
+
+            Number.isFinite(l1)
+
+            ? Math.round(l1) +
+              ' corridas'
+
+            : '—';
+
+
+    document
+        .getElementById(
+            'lifeExp'
+        )
+        .textContent =
+
+            Number.isFinite(l2)
+
+            ? Math.round(l2) +
+              ' corridas'
+
+            : '—';
+
+
+    document
+        .getElementById(
+            'atTarget'
+        )
+        .textContent =
+
+            fmt(
+                predTarget,
+                1
+            ) +
+            ' mm';
+
+
+    /* Status */
+
+    const s =
+        document.getElementById(
+            'status'
+        );
+
+
+    s.className =
+        'status ' +
+        (
+            bestLife >= target
+
+            ? 'ok'
+
+            : bestLife >= target*.9
+
+                ? 'warn'
+
+                : 'bad'
+        );
+
+
+    if (
+        bestLife >= target
+    ) {
+
+        s.innerHTML = `
+
+            <strong>
+                Meta projetada como atingível
+            </strong>
+
+            <span>
+
+                O modelo ${bestName}
+                (R² ${fmt(best.r2,3)})
+                projeta o limite em aproximadamente
+                ${Math.round(bestLife)}
+                corridas.
+
+            </span>
+
+        `;
+
+    }
+
+    else {
+
+        s.innerHTML = `
+
+            <strong>
+
+                ${
+                    bestLife >= target*.9
+
+                    ? 'Atenção à campanha'
+
+                    : 'Meta não sustentada pela projeção'
+                }
+
+            </strong>
+
+            <span>
+
+                O modelo ${bestName}
+                (R² ${fmt(best.r2,3)})
+                projeta o limite em aproximadamente
+                ${Math.round(bestLife)}
+                corridas,
+
+                antes da meta de
+                ${Math.round(target)}.
+
+            </span>
+
+        `;
+
+    }
+
+
+    document
+        .getElementById(
+            'model'
+        )
+        .innerHTML = `
+
+            Melhor ajuste:
+            <b>${bestName}</b>
+
+            · R² linear:
+            <b>${fmt(lin.r2,3)}</b>
+
+            · R² exponencial:
+            <b>${fmt(exp.r2,3)}</b>.
+
+            <br>
+
+            A projeção é uma estimativa matemática
+            e não substitui inspeção,
+            critérios de segurança
+            ou avaliação de engenharia.
+
+        `;
+
+
+    draw(
+        P,
+        lin,
+        exp,
+        L,
+        target,
+        l1,
+        l2
+    );
+
+}
+
+
+/* BOTÃO CALCULAR */
+
+document
+    .getElementById(
+        'calc'
+    )
+    .addEventListener(
+        'click',
+        calculate
+    );
+
+
+/* PRIMEIRO CÁLCULO AUTOMÁTICO */
+
+calculate();
+
+</script>
+
+</body>
+</html>
