@@ -37,17 +37,63 @@ header.tsa-site-header{position:sticky!important;top:0!important;z-index:999!imp
 .tsa-site-header .tsa-explore:hover{background:#ff8b20!important}
 @media(max-width:1150px){.tsa-site-header .tsa-bar{gap:16px}.tsa-site-header .tsa-menu{gap:13px}.tsa-site-header .tsa-brand{min-width:210px}.tsa-site-header .tsa-brandcopy small{font-size:7px}.tsa-site-header .tsa-explore{display:none}}
 @media(max-width:760px){.tsa-site-header .tsa-bar{width:calc(100% - 28px);min-height:75px;display:flex;flex-wrap:wrap;gap:3px;padding:9px 0}.tsa-site-header .tsa-brand{min-width:0}.tsa-site-header .tsa-logo{width:45px;height:42px;font-size:20px}.tsa-site-header .tsa-brandcopy{font-size:10px}.tsa-site-header .tsa-brandcopy small{font-size:7px}.tsa-site-header .tsa-menu{width:100%;gap:22px;overflow:visible;justify-content:flex-start;flex-wrap:wrap}.tsa-site-header .tsa-menu>a,.tsa-site-header .tsa-drop>button{font-size:11px!important;padding:6px 0!important}.tsa-site-header .tsa-panel{left:0;min-width:260px;max-width:calc(100vw - 32px)}}
-</style></head><body><header class="tsa-site-header"><div class="tsa-bar">
+</style><style id="tsa-nav-home-2026">.tsa-site-header .tsa-menu>a.tsa-home-link{color:#ffad65!important;border:1px solid rgba(232,116,10,.36)!important;border-radius:7px!important;padding:7px 10px!important;font-size:11px!important;white-space:nowrap!important}.tsa-site-header .tsa-menu>a.tsa-home-link:hover{background:rgba(232,116,10,.11)!important}@media(min-width:761px) and (max-width:1240px){.tsa-site-header .tsa-menu{gap:10px!important}.tsa-site-header .tsa-brand{min-width:205px!important}.tsa-site-header .tsa-menu>a.tsa-home-link{font-size:10px!important;padding:6px!important}}</style>
+<style id="tsa-navigation-standard-2026-11">
+/* TSA | Identidade de navegação uniforme em todas as páginas internas. */
+header .tsa-home-link, .nav-inner .tsa-home-link,
+.tsa-site-header .tsa-menu>a.tsa-home-link,
+.navlinks a.tsa-home-link {
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  padding:11px 16px!important;min-height:40px!important;line-height:1.25!important;
+  background:rgba(232,116,10,.045)!important;border:1px solid rgba(232,116,10,.55)!important;
+  border-radius:12px!important;color:#f0a35b!important;font-family:'Space Grotesk',Arial,sans-serif!important;
+  font-size:13px!important;font-weight:700!important;text-decoration:none!important;
+  white-space:nowrap!important;letter-spacing:0!important;box-shadow:none!important;
+}
+header .tsa-home-link:hover,.nav-inner .tsa-home-link:hover,
+.tsa-site-header .tsa-menu>a.tsa-home-link:hover,.navlinks a.tsa-home-link:hover {
+  background:rgba(232,116,10,.13)!important;border-color:#e8740a!important;color:#ffbd81!important;
+}
+footer .tsa-social-footer,footer .foot-nav,footer .social-links,footer .social,
+footer .tsa-legacy-footer {display:none!important;}
+footer a[href="../index.html"]:not(.tsa-unified-return),
+footer a[href="../../index.html"]:not(.tsa-unified-return){display:none!important;}
+footer .tsa-unified-footer {
+  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:clamp(18px,3vw,38px);
+  max-width:1180px;margin:26px auto 0;padding:24px 18px 6px;
+  border-top:1px solid rgba(255,255,255,.13);
+  font-family:'Space Grotesk',Arial,sans-serif;font-size:14px;line-height:1.4;
+}
+footer .tsa-unified-footer a {
+  display:inline-flex;align-items:center;gap:9px;color:#c4d2e3!important;
+  text-decoration:none!important;font-size:14px;font-weight:500;white-space:nowrap;
+}
+footer .tsa-unified-footer a:hover{color:#ff9a3d!important;}
+footer .tsa-unified-footer .tsa-icon{width:28px;height:28px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;border-radius:7px;}
+footer .tsa-unified-footer .tsa-icon.ig{background:linear-gradient(35deg,#ffbd45,#ed2b78,#7c3fba)}
+footer .tsa-unified-footer .tsa-icon.li{background:#0a66c2}
+footer .tsa-unified-footer svg{display:block;width:19px;height:19px;fill:none;stroke:#fff;stroke-width:1.8;}
+footer .tsa-unified-footer .tsa-icon.li svg{fill:#fff;stroke:none;}
+@media(max-width:780px){
+  header .tsa-home-link,.nav-inner .tsa-home-link,
+  .tsa-site-header .tsa-menu>a.tsa-home-link,.navlinks a.tsa-home-link{font-size:11px!important;padding:8px 10px!important;min-height:34px!important;}
+  footer .tsa-unified-footer{gap:16px;padding:20px 10px 6px;}
+  footer .tsa-unified-footer a{font-size:12px;}
+}
+</style>
+</head><body><header class="tsa-site-header"><div class="tsa-bar">
  <a class="tsa-brand" href="../index.html" aria-label="TSA Materiais & Metalurgia — página inicial"><span class="tsa-logo">TSA</span><span class="tsa-brandcopy">Materiais &amp;<br>Metalurgia<small>ENGENHARIA • EDUCAÇÃO • TECNOLOGIA</small></span></a>
- <div class="tsa-menu" role="navigation" aria-label="Navegação principal TSA">
+ <div class="tsa-menu" role="navigation" aria-label="Navegação principal TSA"><a class="tsa-home-link" href="../index.html" aria-label="Voltar à página principal">← Página principal</a>
  <a href="../index.html#cursos">Cursos <small class="tsa-coming">em breve</small></a>
  <div class="tsa-drop"><button type="button" aria-expanded="false" aria-haspopup="true">Refratários <span class="tsa-chevron">⌄</span></button><div class="tsa-panel">
- <a href="../cursos/engenharia-refratarios/index.html"><b>Engenharia de Refratários</b><small>Formação técnica · em breve</small></a>
+ <a href="../treinamentos/refratarios-isostaticos/index.html"><b>Refratários Isostáticos</b><small>Treinamento técnico · lingotamento contínuo</small></a>
+<a href="../cursos/engenharia-refratarios/index.html"><b>Engenharia de Refratários</b><small>Formação técnica · em breve</small></a>
  <a href="../calculadora/index.html"><b>Calculadora de campanhas</b><small>Estimativa de vida e desgaste</small></a><a href="../calculadora/vida-revestimento/index.html"><b>Calculadora de desgaste</b><small>Ferramenta original preservada</small></a>
  <a href="../analise-curvas/index.html"><b>Análise de curvas</b><small>Avaliação técnica de campanhas</small></a>
  </div></div>
  <div class="tsa-drop"><button type="button" aria-expanded="false" aria-haspopup="true">Treinamentos <span class="tsa-chevron">⌄</span></button><div class="tsa-panel">
- <a href="../treinamentos/sinobras-peneiramento/index.html"><b>Peneiramento de Carvão e Minério</b><small>Treinamento corporativo</small></a>
+ <a href="../treinamentos/refratarios-isostaticos/index.html"><b>Refratários Isostáticos no Lingotamento Contínuo</b><small>Treinamento corporativo</small></a>
+<a href="../treinamentos/sinobras-peneiramento/index.html"><b>Peneiramento de Carvão e Minério</b><small>Treinamento corporativo</small></a>
  <a href="../treinamentos/sinterizacao-minerio-ferro/index.html"><b>Sinterização de Minério de Ferro</b><small>Turmas sob consulta</small></a>
  <a href="../index.html#servicos"><b>Treinamentos corporativos</b><small>Conheça nossa atuação</small></a>
  <a href="../index.html#realizados"><b>Treinamentos já realizados</b><small>Portfólio de capacitações</small></a>
@@ -55,7 +101,12 @@ header.tsa-site-header{position:sticky!important;top:0!important;z-index:999!imp
  </div></div>
  <a href="../loja-tecnica/index.html">Loja técnica</a>
  </div><a class="tsa-explore" href="../index.html#cursos">Explorar cursos ↗</a>
- </div></header><main><h1>Solicitação enviada</h1><p>Obrigado pelo contato. Sua solicitação foi encaminhada para análise, sujeita à confirmação de recebimento pelo serviço de formulários.</p><a href="index.html">Voltar à Análise de Curvas</a></main><script>document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(!h||h.startsWith('#')||/^(https?:|mailto:|tel:|javascript:|data:)/i.test(h))return;if(!/\.html(?:[?#]|$)/i.test(h))return;if(window.parent===window)return;e.preventDefault();window.parent.postMessage({tsa_route:h},'*');});</script><footer><div aria-label="Redes sociais da TSA" class="tsa-social-footer"><span class="tsa-social-title">Acompanhe a TSA</span><div class="tsa-social-actions"><a aria-label="Instagram TSA @transformandosuoremaco" href="https://www.instagram.com/transformandosuoremaco/" rel="noopener noreferrer" target="_blank"><span aria-hidden="true" class="tsa-ig">◎</span> Instagram</a><a aria-label="LinkedIn TSA Materiais e Metalurgia" href="https://www.linkedin.com/company/transformandosuoremaco/posts" rel="noopener noreferrer" target="_blank"><span aria-hidden="true" class="tsa-li">in</span> LinkedIn</a></div></div><div style="max-width:1180px;margin:16px auto 12px;padding:0 16px;text-align:right"><a href="../index.html" style="color:#e8740a;text-decoration:none;font-weight:700;font-size:13px">Voltar ao início ↑</a></div></footer><script id="tsa-shared-navigation-script">
+ </div></header><main><h1>Solicitação enviada</h1><p>Obrigado pelo contato. Sua solicitação foi encaminhada para análise, sujeita à confirmação de recebimento pelo serviço de formulários.</p><a href="index.html">Voltar à Análise de Curvas</a></main><script>document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(!h||h.startsWith('#')||/^(https?:|mailto:|tel:|javascript:|data:)/i.test(h))return;if(!/\.html(?:[?#]|$)/i.test(h))return;if(window.parent===window)return;e.preventDefault();window.parent.postMessage({tsa_route:h},'*');});</script><footer><div aria-label="Redes sociais da TSA" class="tsa-social-footer"><span class="tsa-social-title">Acompanhe a TSA</span><div class="tsa-social-actions"><a aria-label="Instagram TSA @transformandosuoremaco" href="https://www.instagram.com/transformandosuoremaco/" rel="noopener noreferrer" target="_blank"><span aria-hidden="true" class="tsa-ig">◎</span> Instagram</a><a aria-label="LinkedIn TSA Materiais e Metalurgia" href="https://www.linkedin.com/company/transformandosuoremaco/posts" rel="noopener noreferrer" target="_blank"><span aria-hidden="true" class="tsa-li">in</span> LinkedIn</a></div></div><div style="max-width:1180px;margin:16px auto 12px;padding:0 16px;text-align:right"><a href="../index.html" style="color:#e8740a;text-decoration:none;font-weight:700;font-size:13px">← Página principal</a></div><div class="tsa-unified-footer" aria-label="Navegação e redes sociais da TSA">
+  <a class="tsa-unified-return" href="../index.html">← Página principal</a>
+  <a href="https://www.instagram.com/transformandosuoremaco/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da TSA (abre em nova aba)"><span class="tsa-icon ig" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.7" r="1" fill="white" stroke="none"/></svg></span>Instagram ↗</a>
+  <a href="https://www.linkedin.com/company/transformandosuoremaco/posts" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn da TSA (abre em nova aba)"><span class="tsa-icon li" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 9h3v10H5zM6.5 4.7a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6zM10 9h2.9v1.35c.6-1 1.6-1.65 3.1-1.65 3 0 3.9 1.9 3.9 4.7V19h-3.1v-4.7c0-1.3-.05-2.9-1.8-2.9-1.8 0-2 1.4-2 2.8V19H10z"/></svg></span>LinkedIn ↗</a>
+</div>
+</footer><script id="tsa-shared-navigation-script">
 (function(){
  document.querySelectorAll('.tsa-site-header .tsa-drop > button').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();var box=b.parentElement;document.querySelectorAll('.tsa-site-header .tsa-drop').forEach(function(p){if(p!==box){p.classList.remove('is-open');var other=p.querySelector('button');if(other)other.setAttribute('aria-expanded','false')}});var open=box.classList.toggle('is-open');b.setAttribute('aria-expanded',String(open))})});
  document.addEventListener('click',function(e){document.querySelectorAll('.tsa-site-header .tsa-drop.is-open').forEach(function(p){if(!p.contains(e.target)){p.classList.remove('is-open');p.querySelector('button').setAttribute('aria-expanded','false')}})});
