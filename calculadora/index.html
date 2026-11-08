@@ -1,326 +1,1719 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Comparador de Campanhas | Engenharia de Refratários</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Calculadora de Desgaste | TSA Materiais & Metalurgia</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
-:root{--bg:#090b11;--panel:#10141e;--raised:#171c28;--text:#ede8e1;--muted:#939db0;--orange:#e8740a;--blue:#4e8bab;--green:#58b58b;--red:#e77a75;--line:rgba(255,255,255,.1)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 'Space Grotesk',sans-serif}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}header{border-bottom:1px solid var(--line);background:#0e1119}.container{max-width:1250px;margin:auto;padding:0 24px}.top{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:14px}.brand{font:21px 'DM Serif Display',serif}.brand b{color:var(--orange);font-weight:400}.back{color:var(--muted);text-decoration:none;font-size:13px}.back:hover{color:var(--text)}.hero{padding:46px 0 24px}.eyebrow{font:600 11px 'JetBrains Mono',monospace;color:var(--orange);letter-spacing:.15em;text-transform:uppercase}h1,h2{font-family:'DM Serif Display',serif;font-weight:400;line-height:1.14}h1{font-size:clamp(35px,5vw,56px);margin:10px 0 13px}h2{font-size:29px;margin:0 0 5px}p{margin:0}.sub{color:var(--muted);max-width:810px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:26px 0 18px}.btn{border:1px solid var(--line);background:var(--raised);color:var(--text);padding:11px 16px;border-radius:9px;font-weight:600}.btn:hover{border-color:var(--orange)}.btn.primary{background:var(--orange);border-color:var(--orange);color:white}.btn.small{font-size:12px;padding:8px 11px}.count{color:var(--muted);font:12px 'JetBrains Mono',monospace;margin-left:auto}.scenario{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;margin-bottom:18px;scroll-margin-top:16px}.card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:25px;min-width:0}.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:14px}.tag{display:inline-block;font:600 11px 'JetBrains Mono',monospace;color:var(--orange);letter-spacing:.1em;margin-bottom:6px}.description{color:var(--muted);font-size:13px}.remove-scenario{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:12px;white-space:nowrap}.remove-scenario:hover{color:var(--red);border-color:var(--red)}label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}input,select{background:var(--raised);border:1px solid var(--line);color:var(--text);padding:10px 11px;border-radius:9px;width:100%;min-width:0;outline:none;font:14px 'JetBrains Mono',monospace}input:focus,select:focus{border-color:var(--orange)}.filters{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:17px 0 8px}.filters select{font:13px 'Space Grotesk',sans-serif}.class-note{font-size:11px;color:var(--blue);margin-top:5px}.guidance{margin-top:12px;border:1px solid var(--line);border-radius:11px;padding:14px 15px;background:#121b27;font-size:12px;line-height:1.6}.guidance h3{margin:0 0 6px;font-size:14px;color:var(--text)}.guidance p+p{margin-top:7px}.guidance b{color:var(--text)}.guidance.critical{border-color:rgba(231,122,117,.42);background:rgba(231,122,117,.055)}.guidance.critical h3{color:var(--red)}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:17px 0}.fields .wide{grid-column:1/-1}.field-note{font-size:11px;color:var(--muted);margin-top:4px}.formula-note{border-left:3px solid var(--blue);padding:10px 13px;background:rgba(78,139,171,.08);border-radius:0 8px 8px 0;color:var(--muted);font-size:12px;margin:12px 0 0}.formula-note b{color:var(--text)}.measures-head{display:grid;grid-template-columns:1fr 1fr 34px;gap:9px}.measure{display:grid;grid-template-columns:1fr 1fr 34px;gap:9px;margin:0 0 8px}.measure button{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:8px}.measure button:hover{color:var(--red);border-color:var(--red)}.input-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.input-actions .btn.primary{flex:1}.error{color:var(--red);font-size:12px;min-height:20px;margin-top:10px}.result-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.result-head h2{font-size:26px}.state{font:600 11px 'JetBrains Mono',monospace;padding:5px 9px;border-radius:7px;background:var(--raised);color:var(--muted)}.state.ok{color:var(--green)}.state.bad{color:var(--red)}.state.warn{color:var(--orange)}.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric{background:var(--raised);border:1px solid var(--line);border-radius:11px;padding:15px}.metric .label{font-size:12px;color:var(--muted)}.metric .value{font:29px 'DM Serif Display',serif;margin:6px 0 1px;overflow-wrap:anywhere}.metric .note{color:var(--muted);font-size:11px}.metric.feature{border-color:rgba(232,116,10,.35)}.metric.feature .value{color:#ffb86e}.summary{margin-top:13px;background:var(--raised);padding:14px 15px;border-radius:11px;border:1px solid var(--line);font-size:13px}.summary strong{display:block;margin-bottom:3px}.summary.ok strong{color:var(--green)}.summary.bad strong{color:var(--red)}.summary.warn strong{color:var(--orange)}.summary.bad{border-color:rgba(231,122,117,.45);background:rgba(231,122,117,.07)}.metric.feature .value{font-size:32px}.detail{margin-top:12px;color:var(--muted);font-size:12px}.detail b{color:var(--text)}.comparison{margin:30px 0 48px}.comparison .card{padding:30px}.compare-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:24px}.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted)}.key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-2px}.key.life{background:var(--orange)}.key.goal{background:var(--blue)}.chart{display:grid;gap:22px}.chart-row{display:grid;grid-template-columns:160px minmax(0,1fr) 125px;gap:16px;align-items:center}.chart-name{font-weight:600;font-size:14px}.chart-name small{display:block;font-weight:400;color:var(--muted);font-size:11px}.bars{display:grid;gap:7px}.track{height:23px;border-radius:6px;background:#232a39;overflow:hidden;position:relative}.bar{height:100%;min-width:0;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:white;font:600 11px 'JetBrains Mono',monospace;white-space:nowrap;transition:width .25s}.bar.life{background:linear-gradient(90deg,#9b4c13,var(--orange))}.bar.goal{background:linear-gradient(90deg,#345d7a,var(--blue))}.chart-value{text-align:right;font:600 12px 'JetBrains Mono',monospace}.chart-value small{display:block;color:var(--muted);font:11px 'Space Grotesk',sans-serif}.chart-value.positive{color:var(--green)}.chart-value.negative{color:var(--red)}.axis{display:grid;grid-template-columns:160px minmax(0,1fr) 125px;gap:16px;margin-top:13px}.ticks{display:flex;justify-content:space-between;font:10px 'JetBrains Mono',monospace;color:var(--muted)}.footnote{border-top:1px solid var(--line);padding-top:16px;margin-top:23px;color:var(--muted);font-size:12px}.empty{padding:35px 10px;color:var(--muted);text-align:center;border:1px dashed var(--line);border-radius:10px}footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);text-align:center;font-size:12px}
-@media(max-width:940px){.scenario{grid-template-columns:1fr}.chart-row,.axis{grid-template-columns:115px minmax(0,1fr) 100px;gap:9px}}@media(max-width:560px){.container{padding:0 14px}.card{padding:17px}.top .brand{font-size:16px}.back{font-size:11px}.metrics{gap:8px}.metric{padding:11px}.metric .value{font-size:24px}.fields,.filters{gap:8px}.filters{grid-template-columns:1fr}.chart-row{grid-template-columns:1fr;gap:6px}.chart-value{text-align:left}.axis{display:none}.count{width:100%;margin-left:0}.comparison .card{padding:18px}}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #090B11;
+    --s1: #10141E;
+    --s2: #161B26;
+    --lava: #E8740A;
+    --lava-d: rgba(232,116,10,.13);
+    --ink: #EDE8E1;
+    --muted: #7A8194;
+    --steel: #4E8BAB;
+    --hair: rgba(255,255,255,.08);
+    --green: #4aa578;
+    --red: #d45d5d;
+    --radius: 14px;
+}
+
+body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.55;
+}
+
+.wrap {
+    max-width: 1120px;
+    margin: auto;
+    padding: 0 24px;
+}
+
+/* MENU */
+
+nav {
+    border-bottom: 1px solid var(--hair);
+    background: rgba(9,11,17,.95);
+}
+
+.nav-inner {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+}
+
+.brand span {
+    color: var(--lava);
+}
+
+.back {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back:hover {
+    color: var(--ink);
+}
+
+/* HERO */
+
+.hero {
+    padding: 72px 0 42px;
+}
+
+.eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--lava);
+}
+
+h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px,6vw,68px);
+    line-height: 1.02;
+    margin: 12px 0 18px;
+    max-width: 850px;
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 760px;
+    font-size: 17px;
+}
+
+/* LAYOUT */
+
+.layout {
+    display: grid;
+    grid-template-columns: 390px 1fr;
+    gap: 22px;
+    padding-bottom: 80px;
+}
+
+@media(max-width:900px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card {
+    background: var(--s1);
+    border: 1px solid var(--hair);
+    border-radius: var(--radius);
+    padding: 26px;
+}
+
+.card h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 25px;
+    margin-bottom: 4px;
+}
+
+.hint {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+/* FORMULÁRIO */
+
+label {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    margin: 14px 0 6px;
+}
+
+input {
+    width: 100%;
+    background: var(--s2);
+    border: 1px solid var(--hair);
+    color: var(--ink);
+    border-radius: 9px;
+    padding: 13px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--lava);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.measure {
+    display: grid;
+    grid-template-columns: 1fr 1fr 38px;
+    gap: 8px;
+    align-items: end;
+    margin-bottom: 8px;
+}
+
+.measure button {
+    height: 43px;
+    border: 1px solid var(--hair);
+    background: transparent;
+    color: var(--muted);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button.primary,
+button.secondary {
+    width: 100%;
+    padding: 13px;
+    border-radius: 9px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+button.primary {
+    border: 0;
+    background: var(--lava);
+    color: white;
+    margin-top: 18px;
+}
+
+button.secondary {
+    border: 1px solid var(--hair);
+    background: transparent;
+    color: var(--ink);
+    margin-top: 9px;
+}
+
+.message {
+    font-size: 13px;
+    margin-top: 12px;
+    color: var(--red);
+    min-height: 20px;
+}
+
+/* RESULTADOS */
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+@media(max-width:560px) {
+    .results {
+        grid-template-columns: 1fr;
+    }
+}
+
+.metric {
+    background: var(--s2);
+    border: 1px solid var(--hair);
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.metric .lbl {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.metric .val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 31px;
+    margin-top: 3px;
+}
+
+.metric .sub {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* STATUS */
+
+.status {
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+    border: 1px solid var(--hair);
+    background: var(--s2);
+}
+
+.status strong {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.status.ok strong {
+    color: var(--green);
+}
+
+.status.warn strong {
+    color: var(--lava);
+}
+
+.status.bad strong {
+    color: var(--red);
+}
+
+/* GRÁFICO */
+
+.chartbox {
+    background: var(--s2);
+    border: 1px solid var(--hair);
+    border-radius: 12px;
+    padding: 14px;
+    overflow: hidden;
+}
+
+canvas {
+    width: 100%;
+    height: 360px;
+    display: block;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.dot {
+    display: inline-block;
+    width: 18px;
+    height: 3px;
+    margin-right: 6px;
+    vertical-align: middle;
+    border-radius: 2px;
+}
+
+.linear {
+    background: var(--steel);
+}
+
+.exp {
+    background: var(--lava);
+}
+
+.limit {
+    background: var(--red);
+}
+
+.model {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--hair);
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.model b {
+    color: var(--ink);
+}
+
+footer {
+    border-top: 1px solid var(--hair);
+    padding: 32px 0;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+}
+
 </style>
-<style>
-/* TSA / rodapé social padronizado */
-.tsa-social-footer{border-top:1px solid rgba(255,255,255,.12);margin:26px auto 0;padding:23px 0 8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;max-width:1180px;width:calc(100% - 40px);font-family:Arial,sans-serif}
-.tsa-social-footer .tsa-social-title{font-size:12px;letter-spacing:.12em;color:#aebbc9;font-weight:700;text-transform:uppercase}
-.tsa-social-footer .tsa-social-actions{display:flex;gap:13px;flex-wrap:wrap}
-.tsa-social-footer .tsa-social-actions a{display:inline-flex;align-items:center;gap:9px;padding:9px 13px;border:1px solid rgba(255,255,255,.16);border-radius:10px;color:#f1f4fa;text-decoration:none;font-size:13px;font-weight:600;transition:border-color .2s,background .2s}
-.tsa-social-footer .tsa-social-actions a:hover{border-color:#e8740a;background:rgba(232,116,10,.08)}
-.tsa-social-footer .tsa-ig{display:grid;place-items:center;background:linear-gradient(40deg,#ffbe50,#e92a78,#8434af);width:25px;height:25px;border-radius:7px;color:#fff;font-size:21px;line-height:1}
-.tsa-social-footer .tsa-li{display:grid;place-items:center;background:#0a66c2;width:25px;height:25px;border-radius:5px;color:#fff;font:bold 18px Arial,sans-serif}
-@media(max-width:600px){.tsa-social-footer{width:calc(100% - 30px)}.tsa-social-footer .tsa-social-actions{width:100%}.tsa-social-footer .tsa-social-actions a{flex:1;justify-content:center}}
-</style><style id="tsa-shared-navigation">
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
-header.tsa-site-header{position:sticky!important;top:0!important;z-index:999!important;background:rgba(9,11,17,.975)!important;border-bottom:1px solid rgba(255,255,255,.11)!important;box-shadow:0 4px 24px #0002!important;backdrop-filter:blur(14px)!important;color:#f3f0ea!important;padding:0!important;margin:0!important;min-height:0!important;width:100%!important;}
-.tsa-site-header *{box-sizing:border-box!important}
-.tsa-site-header .tsa-bar{max-width:1220px;width:calc(100% - 52px);margin:auto;min-height:84px;display:flex;align-items:center;gap:28px;justify-content:space-between;}
-.tsa-site-header a{text-decoration:none!important}
-.tsa-site-header .tsa-brand{display:flex;gap:12px;align-items:center;min-width:245px;flex-shrink:0;color:#f3f0ea!important}
-.tsa-site-header .tsa-logo{display:flex;width:60px;height:51px;border:2px solid #e8740a;clip-path:polygon(9% 0,91% 0,100% 17%,100% 83%,91% 100%,9% 100%,0 83%,0 17%);align-items:center;justify-content:center;font:700 24px 'Space Grotesk',sans-serif;letter-spacing:-2px;color:#e8740a}
-.tsa-site-header .tsa-brandcopy{font:700 12px/1.38 'Space Grotesk',sans-serif;letter-spacing:.08em;text-transform:uppercase}
-.tsa-site-header .tsa-brandcopy small{display:block;font:500 9px/1.5 'JetBrains Mono',monospace;letter-spacing:.1em;color:#9ba6b8;margin-top:4px}
-.tsa-site-header .tsa-menu{display:flex;align-items:center;gap:22px;margin-left:auto;flex-shrink:0}
-.tsa-site-header .tsa-menu>a,.tsa-site-header .tsa-drop>button{font:600 12px/1.5 'Space Grotesk',sans-serif!important;color:#bbc4d2!important;white-space:nowrap;border:0!important;background:none!important;padding:10px 0!important;margin:0!important;box-shadow:none!important;text-transform:none!important;letter-spacing:normal!important;border-radius:0!important}
-.tsa-site-header .tsa-menu>a:hover,.tsa-site-header .tsa-drop>button:hover{color:#f3f0ea!important}
-.tsa-site-header .tsa-drop{position:relative}
-.tsa-site-header .tsa-drop>button{cursor:pointer;display:flex;align-items:center;gap:7px}
-.tsa-site-header .tsa-chevron{color:#e8740a;font-size:16px;font-weight:700;line-height:1}
-.tsa-site-header .tsa-coming{font:500 8px 'JetBrains Mono',monospace;color:#9ba6b8;margin-left:4px;opacity:.7}
-.tsa-site-header .tsa-panel{position:absolute;top:calc(100% + 9px);left:-16px;min-width:280px;max-width:360px;padding:10px;background:#111b29;border:1px solid #ffffff26;border-radius:13px;box-shadow:0 20px 50px #0008;display:none;z-index:1000}
-.tsa-site-header .tsa-drop.is-open .tsa-panel,.tsa-site-header .tsa-drop:focus-within .tsa-panel{display:block}
-.tsa-site-header .tsa-panel a{display:block;padding:11px 12px;border-radius:8px;color:#f1f3f6!important;text-decoration:none!important}
-.tsa-site-header .tsa-panel a:hover{background:#1d2a3c!important}
-.tsa-site-header .tsa-panel b{display:block;font:600 12px 'Space Grotesk',sans-serif}
-.tsa-site-header .tsa-panel small{display:block;margin-top:4px;color:#9ba6b8;font:400 10px/1.4 'Space Grotesk',sans-serif}
-.tsa-site-header .tsa-explore{display:inline-flex;justify-content:center;align-items:center;background:#e8740a!important;color:#10131a!important;border:1px solid #e8740a!important;border-radius:7px!important;padding:13px 18px!important;font:700 13px 'Space Grotesk',sans-serif!important;white-space:nowrap;flex-shrink:0}
-.tsa-site-header .tsa-explore:hover{background:#ff8b20!important}
-@media(max-width:1150px){.tsa-site-header .tsa-bar{gap:16px}.tsa-site-header .tsa-menu{gap:13px}.tsa-site-header .tsa-brand{min-width:210px}.tsa-site-header .tsa-brandcopy small{font-size:7px}.tsa-site-header .tsa-explore{display:none}}
-@media(max-width:760px){.tsa-site-header .tsa-bar{width:calc(100% - 28px);min-height:75px;display:flex;flex-wrap:wrap;gap:3px;padding:9px 0}.tsa-site-header .tsa-brand{min-width:0}.tsa-site-header .tsa-logo{width:45px;height:42px;font-size:20px}.tsa-site-header .tsa-brandcopy{font-size:10px}.tsa-site-header .tsa-brandcopy small{font-size:7px}.tsa-site-header .tsa-menu{width:100%;gap:22px;overflow:visible;justify-content:flex-start;flex-wrap:wrap}.tsa-site-header .tsa-menu>a,.tsa-site-header .tsa-drop>button{font-size:11px!important;padding:6px 0!important}.tsa-site-header .tsa-panel{left:0;min-width:260px;max-width:calc(100vw - 32px)}}
-</style></head>
+</head>
+
 <body>
-<header class="tsa-site-header"><div class="tsa-bar">
- <a class="tsa-brand" href="../index.html" aria-label="TSA Materiais & Metalurgia — página inicial"><span class="tsa-logo">TSA</span><span class="tsa-brandcopy">Materiais &amp;<br>Metalurgia<small>ENGENHARIA • EDUCAÇÃO • TECNOLOGIA</small></span></a>
- <div class="tsa-menu" role="navigation" aria-label="Navegação principal TSA">
- <a href="../index.html#cursos">Cursos <small class="tsa-coming">em breve</small></a>
- <div class="tsa-drop"><button type="button" aria-expanded="false" aria-haspopup="true">Refratários <span class="tsa-chevron">⌄</span></button><div class="tsa-panel">
- <a href="../cursos/engenharia-refratarios/index.html"><b>Engenharia de Refratários</b><small>Formação técnica · em breve</small></a>
- <a href="../calculadora/index.html"><b>Calculadora de campanhas</b><small>Estimativa de vida e desgaste</small></a><a href="../calculadora/vida-revestimento/index.html"><b>Calculadora de desgaste</b><small>Ferramenta original preservada</small></a>
- <a href="../analise-curvas/index.html"><b>Análise de curvas</b><small>Avaliação técnica de campanhas</small></a>
- </div></div>
- <div class="tsa-drop"><button type="button" aria-expanded="false" aria-haspopup="true">Treinamentos <span class="tsa-chevron">⌄</span></button><div class="tsa-panel">
- <a href="../treinamentos/sinobras-peneiramento/index.html"><b>Peneiramento de Carvão e Minério</b><small>Treinamento corporativo</small></a>
- <a href="../treinamentos/sinterizacao-minerio-ferro/index.html"><b>Sinterização de Minério de Ferro</b><small>Turmas sob consulta</small></a>
- <a href="../index.html#servicos"><b>Treinamentos corporativos</b><small>Conheça nossa atuação</small></a>
- <a href="../index.html#realizados"><b>Treinamentos já realizados</b><small>Portfólio de capacitações</small></a>
- <a href="../index.html#fotos-treinamentos"><b>Galeria de treinamentos</b><small>Registros fotográficos</small></a>
- </div></div>
- <a href="../loja-tecnica/index.html">Loja técnica</a>
- </div><a class="tsa-explore" href="../index.html#cursos">Explorar cursos ↗</a>
- </div></header>
-<main class="container">
-<div class="hero"><div class="eyebrow">Ferramenta técnica · versão de testes</div><h1>Comparador de campanhas refratárias.</h1><p class="sub">Crie simulações independentes por equipamento e região, usando a espessura inicial e uma medição de campanha. Compare a taxa média de desgaste, as corridas adicionais projetadas a partir da medição e as corridas necessárias para alcançar a meta. <strong>Os cenários iniciais são exemplos editáveis.</strong></p><p style="margin:16px 0 0;color:#a9b7c9;font-size:13px">Prefere a ferramenta anterior? <a href="vida-revestimento/index.html" style="color:#f49a3d;text-decoration:underline;text-underline-offset:3px">Abrir calculadora de vida do revestimento →</a></p></div>
-<div class="toolbar"><button class="btn primary" id="addScenario">+ Nova simulação</button><button class="btn" id="calcAll">↻ Calcular todas</button><span class="count" id="scenarioCount"></span></div>
-<div id="scenarios"></div>
-<section class="comparison" id="comparison"><div class="card"><div class="compare-head"><div><div class="tag">COMPARATIVO</div><h2>Potencial restante de cada campanha</h2><p class="description">Barras: corridas adicionais estimadas a partir da medição versus corridas ainda necessárias para a meta. Se a espessura já atingiu o limite, o potencial adicional é zero.</p></div><div class="legend"><span><i class="key life"></i>Corridas adicionais projetadas</span><span><i class="key goal"></i>Corridas para a meta</span></div></div><div class="chart" id="chart"></div><div class="axis" id="axis"></div><p class="footnote">Método: taxa média = (espessura inicial − espessura medida) ÷ vida na medição; corridas adicionais = máximo entre zero e (espessura medida − limite de segurança) ÷ taxa média. Se a medição estiver no limite ou abaixo dele, a ferramenta indica zero corridas adicionais, sem autorizar continuidade operacional. É uma <b>projeção linear baseada em uma única medição</b>, não um ajuste estatístico. A taxa pode mudar ao longo da campanha. O limite deve ser definido conforme o equipamento, a região e o procedimento local; não há limite universal. As orientações por região são sugestões de investigação, não procedimentos de reparo nem autorização de retorno à operação. Use a ferramenta como apoio à análise, nunca como substituto das inspeções e dos critérios de segurança.</p></div></section>
-</main>
-<footer>© 2026 Engenharia de Refratários · by TSA Materiais &amp; Metalurgia · Simulador educacional<div aria-label="Redes sociais da TSA" class="tsa-social-footer"><span class="tsa-social-title">Acompanhe a TSA</span><div class="tsa-social-actions"><a aria-label="Instagram TSA @transformandosuoremaco" href="https://www.instagram.com/transformandosuoremaco/" rel="noopener noreferrer" target="_blank"><span aria-hidden="true" class="tsa-ig">◎</span> Instagram</a><a aria-label="LinkedIn TSA Materiais e Metalurgia" href="https://www.linkedin.com/company/transformandosuoremaco/posts" rel="noopener noreferrer" target="_blank"><span aria-hidden="true" class="tsa-li">in</span> LinkedIn</a></div></div></footer>
+
+<nav>
+    <div class="wrap nav-inner">
+
+        <div class="brand">
+            <span>⬡</span>
+            TSA Materiais &amp; Metalurgia
+        </div>
+
+        <a class="back" href="../../cursos/engenharia-refratarios/index.html">
+            ← Voltar ao curso
+        </a>
+
+    </div>
+</nav>
+
+
+<div class="wrap">
+
+<section class="hero">
+
+    <p class="eyebrow">
+        Ferramenta técnica gratuita
+    </p>
+
+    <h1>
+        Calculadora de vida do revestimento refratário.
+    </h1>
+
+    <p>
+        Insira as medições de espessura ao longo da campanha.
+        A ferramenta estima taxa de desgaste, vida até o limite
+        de segurança e compara projeções linear e exponencial.
+    </p>
+
+</section>
+
+
+<div class="layout">
+
+<!-- PAINEL DE ENTRADA -->
+
+<section class="card">
+
+    <h2>Dados da campanha</h2>
+
+    <p class="hint">
+        Use pelo menos duas medições.
+        A medição em 0 corridas pode representar a espessura inicial.
+    </p>
+
+
+    <div class="row">
+
+        <div>
+
+            <label for="limit">
+                Limite de segurança (mm)
+            </label>
+
+            <input
+                id="limit"
+                type="number"
+                min="0"
+                step="0.1"
+                value="60">
+
+        </div>
+
+
+        <div>
+
+            <label for="target">
+                Meta de campanha (corridas)
+            </label>
+
+            <input
+                id="target"
+                type="number"
+                min="1"
+                step="1"
+                value="120">
+
+        </div>
+
+    </div>
+
+
+    <div id="measurements"></div>
+
+
+    <button
+        class="secondary"
+        id="add"
+        type="button">
+
+        + Adicionar medição
+
+    </button>
+
+
+    <button
+        class="primary"
+        id="calc"
+        type="button">
+
+        Calcular projeção
+
+    </button>
+
+
+    <div
+        class="message"
+        id="message"
+        aria-live="polite">
+    </div>
+
+</section>
+
+
+<!-- RESULTADOS -->
+
+<section class="card">
+
+    <h2>Projeção da campanha</h2>
+
+    <p class="hint">
+        Resultados calculados a partir das medições informadas.
+    </p>
+
+
+    <div class="results">
+
+
+        <div class="metric">
+
+            <div class="lbl">
+                Taxa média observada
+            </div>
+
+            <div
+                class="val"
+                id="rate">
+                —
+            </div>
+
+            <div class="sub">
+                mm/corrida
+            </div>
+
+        </div>
+
+
+        <div class="metric">
+
+            <div class="lbl">
+                Vida projetada · linear
+            </div>
+
+            <div
+                class="val"
+                id="lifeLinear">
+                —
+            </div>
+
+            <div class="sub">
+                corridas até o limite
+            </div>
+
+        </div>
+
+
+        <div class="metric">
+
+            <div class="lbl">
+                Vida projetada · exponencial
+            </div>
+
+            <div
+                class="val"
+                id="lifeExp">
+                —
+            </div>
+
+            <div class="sub">
+                corridas até o limite
+            </div>
+
+        </div>
+
+
+        <div class="metric">
+
+            <div class="lbl">
+                Espessura na meta
+            </div>
+
+            <div
+                class="val"
+                id="atTarget">
+                —
+            </div>
+
+            <div class="sub">
+                modelo com melhor R²
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="status"
+        id="status">
+
+        <strong>
+            Aguardando cálculo
+        </strong>
+
+        <span>
+            Informe as medições e clique em calcular.
+        </span>
+
+    </div>
+
+
+    <div class="chartbox">
+
+        <canvas
+            id="chart"
+            width="720"
+            height="360">
+        </canvas>
+
+
+        <div class="legend">
+
+            <span>
+                <i class="dot linear"></i>
+                Linear
+            </span>
+
+            <span>
+                <i class="dot exp"></i>
+                Exponencial
+            </span>
+
+            <span>
+                <i class="dot limit"></i>
+                Limite de segurança
+            </span>
+
+            <span>
+                ● Medições reais
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="model"
+        id="model">
+
+        O ajuste compara os modelos
+        <b>linear</b> e
+        <b>exponencial</b>
+        pelo coeficiente R².
+
+        A projeção é uma estimativa matemática
+        e não substitui inspeção,
+        critérios de segurança ou
+        avaliação de engenharia.
+
+    </div>
+
+</section>
+
+</div>
+</div>
+
+
+<footer>
+
+    <div class="wrap">
+
+        © 2026 Engenhariarefrataria.com
+        · Ferramenta educacional de apoio à engenharia
+
+    </div>
+
+<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;max-width:1180px;margin:22px auto 0;padding:15px 0;border-top:1px solid rgba(255,255,255,.13);font-family:Arial,sans-serif;font-size:13px"><a href="../../index.html" style="color:#e8740a;text-decoration:none;font-weight:700">Voltar ao início ↑</a><div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><a href="https://www.instagram.com/transformandosuoremaco/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:7px;color:inherit;text-decoration:none"><span aria-hidden="true" style="display:inline-grid;place-items:center;background:linear-gradient(45deg,#ffb545,#e82b77,#8539ac);color:#fff;width:23px;height:23px;border-radius:6px;font-size:19px">◎</span>Instagram</a><a href="https://www.linkedin.com/company/transformandosuoremaco/posts" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:7px;color:inherit;text-decoration:none"><span aria-hidden="true" style="display:inline-grid;place-items:center;background:#0a66c2;color:#fff;width:23px;height:23px;border-radius:5px;font:bold 16px Arial">in</span>LinkedIn</a></div></div></footer>
+
+
 <script>
-'use strict';
-// Versão 2: uma medição após a instalação (corrida zero).
-const STORAGE='tsa-comparador-campanhas-regioes-v3';
-const PREVIOUS_STORAGE='tsa-comparador-campanhas-uma-medicao-v2';
-const LEGACY_STORAGE='tsa-comparador-campanhas-v1';
-const initial=[
- {id:1,name:'Panela de Aço · Exemplo',equipment:'PA',region:'linha_escoria',initial:'171',target:'120',measured:'88',measuredLife:'90',limit:'60'},
- {id:2,name:'Panela de Gusa · Exemplo',equipment:'PG',region:'linha_metal',initial:'171',target:'120',measured:'95',measuredLife:'90',limit:'60'}
-];
-let sims, nextId, outcomes={};
-const $=id=>document.getElementById(id);
-const number=v=>v===''||v===null||v===undefined?NaN:Number(String(v).replace(',','.'));
-const fmt=(v,d=1)=>Number.isFinite(v)?v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}):'—';
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function persist(){try{localStorage.setItem(STORAGE,JSON.stringify(sims))}catch(e){}}
-try {
- const saved=JSON.parse(localStorage.getItem(STORAGE))||JSON.parse(localStorage.getItem(PREVIOUS_STORAGE));
- if(Array.isArray(saved)&&saved.length){sims=saved;}
- else {
-  const old=JSON.parse(localStorage.getItem(LEGACY_STORAGE));
-  if(Array.isArray(old)&&old.length){
-   sims=old.map((s,i)=>{
-    const points=(s.points||[]).filter(p=>p.x!==''&&p.y!==''&&Number.isFinite(number(p.x))&&Number.isFinite(number(p.y))).sort((a,b)=>number(a.x)-number(b.x));
-    const first=points[0],last=points[points.length-1];
-    return {id:s.id||i+1,name:s.name||`Simulação ${i+1}`,initial:first&&number(first.x)===0?first.y:'',target:s.target||'120',measured:last&&number(last.x)>0?last.y:'',measuredLife:last&&number(last.x)>0?last.x:'',limit:s.limit||'60'};
-   });
-  }else sims=JSON.parse(JSON.stringify(initial));
- }
-} catch(e){sims=JSON.parse(JSON.stringify(initial));}
-const EQUIPMENT_NAMES={PA:'Panela de aço',PG:'Panela de gusa',LD:'Convertedor LD / BOF',OUTRO:'Outro equipamento'};
-const REGIONS={
- PA:[['linha_escoria','Linha de escória'],['linha_metal','Linha de metal'],['sola','Sola / fundo'],['impacto','Região de impacto'],['boca','Boca / borda'],['outra','Outra região']],
- PG:[['linha_escoria','Linha de escória'],['linha_metal','Linha de metal'],['sola','Sola / fundo'],['impacto','Região de impacto'],['boca','Boca / bica'],['outra','Outra região']],
- LD:[['cilindro_vazamento','Cilindro de vazamento'],['cilindro_carga','Cilindro de carga'],['impacto','Região de impacto da sucata'],['cone_superior','Cone superior'],['cone_inferior','Cone inferior'],['sola','Sola / fundo'],['munhoes','Região dos munhões'],['furo','Furo de corrida / entorno'],['outra','Outra região']],
- OUTRO:[['geral','Região avaliada'],['outra','Outra região']]
-};
-function guessEquipment(name){
- const t=String(name||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase();
- if(/\b(BOF|B\.?O\.?F|LD[\s\-_]*\d*|CONVERTEDOR(?:ES)?|CONVERSOR(?:ES)?|BASIC OXYGEN FURNACE|BOS)\b/.test(t))return 'LD';
- if(/\b(PG[\s\-_]*\d*|PANELA[S]? DE GUSA|HOT METAL LADLE)\b/.test(t))return 'PG';
- if(/\b(PA[\s\-_]*\d*|PANELA[S]? DE ACO|STEEL LADLE)\b/.test(t))return 'PA';
- return null;
+
+/* =========================================
+   MEDIÇÕES
+========================================= */
+
+const box =
+    document.getElementById('measurements');
+
+
+function addRow(x = '', y = '') {
+
+    const d =
+        document.createElement('div');
+
+    d.className = 'measure';
+
+
+    d.innerHTML = `
+
+        <div>
+
+            <label>
+                Corridas
+            </label>
+
+            <input
+                class="x"
+                type="number"
+                min="0"
+                step="1"
+                value="${x}">
+
+        </div>
+
+
+        <div>
+
+            <label>
+                Espessura (mm)
+            </label>
+
+            <input
+                class="y"
+                type="number"
+                min="0.01"
+                step="0.1"
+                value="${y}">
+
+        </div>
+
+
+        <button
+            type="button"
+            title="Remover medição">
+
+            ×
+
+        </button>
+
+    `;
+
+
+    d.querySelector('button')
+        .addEventListener(
+            'click',
+            () => {
+
+                if (box.children.length > 2) {
+                    d.remove();
+                }
+
+            }
+        );
+
+
+    box.appendChild(d);
+
 }
-function equipmentFor(s){return s.equipment&&s.equipment!=='AUTO'?s.equipment:guessEquipment(s.name)}
-function regionsFor(eq){return REGIONS[eq]||REGIONS.OUTRO}
-function validRegion(s,eq){const choices=regionsFor(eq);return choices.some(v=>v[0]===s.region)?s.region:choices[0][0]}
-function regionLabel(eq,region){return (regionsFor(eq).find(v=>v[0]===region)||['','Região avaliada'])[1]}
-function zoneAdvice(eq,reg){
- const generic={mechanism:'Avaliar o perfil de desgaste, histórico de campanha e integridade local.',check:'Confirmar a medição, verificar extensão do desgaste e aplicar o procedimento técnico do equipamento.'};
- const ld={
-  cilindro_vazamento:['Contato com metal/escória no basculamento, erosão e desgaste localizado.','Conferir perfil laser do cilindro de vazamento, evolução por setor e proximidade do furo; avaliar a estratégia de manutenção do LD.'],
-  cilindro_carga:['Choques térmicos, abrasão e contato com escória durante a operação.','Inspecionar perfil laser e desgaste circunferencial; revisar distribuição de desgaste e práticas de carregamento.'],
-  impacto:['Impacto da sucata, trincas e destacamento mecânico.','Mapear a região de impacto e possíveis perdas localizadas; revisar prática de carregamento e viabilidade de reparo autorizado.'],
-  linha_escoria:['Corrosão química, oxidação e erosão por escória.','Revisar mapa laser, FeO, basicidade, saturação de MgO e efetividade das práticas de proteção/reparo.'],
-  cone_superior:['Oxidação, abrasão, choque térmico e esforços durante limpeza da boca.','Inspecionar cone, anel de boca e ancoragem estrutural; verificar trincas, desprendimentos e condição da carcaça.'],
-  cone_inferior:['Ataque termoquímico e tensões termomecânicas na transição.','Verificar transição cone/cilindro, desgaste localizado e integridade das juntas; avaliar reparo somente após análise técnica.'],
-  sola:['Erosão, ataque químico, acúmulo e efeitos da agitação de fundo.','Verificar perfil da sola, regiões de sopro pelo fundo e sinais de desgaste localizado ou acúmulo.'],
-  munhoes:['Solicitações térmicas, oxidação e cobertura irregular de proteção por escória.','Mapear espessura por setor na altura dos munhões e verificar tendências e pontos quentes na carcaça.'],
-  furo:['Erosão pelo fluxo de aço, ataque químico e degradação localizada.','Inspecionar o entorno do furo e o sistema de vazamento; avaliar condição do bloco/luva e necessidade de intervenção planejada.']
- };
- const ladle={
-  linha_escoria:['Corrosão por escória, infiltração e possíveis aberturas de juntas.','Inspecionar linha de escória, transições e juntas; avaliar necessidade de reparo ou troca de fiadas conforme procedimento.'],
-  linha_metal:['Erosão pelo metal, infiltração e danos termomecânicos.','Avaliar desgaste localizado, juntas e integridade da linha metálica; verificar possibilidade de reparo conforme procedimento.'],
-  sola:['Impacto, erosão, infiltração e integridade da interface parede/fundo.','Verificar sola, encontro parede/fundo e regiões de maior solicitação; avaliar intervenção conforme inspeção.'],
-  impacto:['Impacto do jato, erosão e destacamentos.','Inspecionar área de impacto, extensão do desgaste e possível dano adjacente; revisar condições de operação.'],
-  boca:['Choque térmico, danos mecânicos e acúmulos na borda/bica.','Inspecionar boca, bica, transições e danos mecânicos; avaliar reparo conforme procedimento.']
- };
- const chosen=(eq==='LD'?ld:(eq==='PA'||eq==='PG'?ladle:{}))[reg];
- return chosen?{mechanism:chosen[0],check:chosen[1]}:generic;
+
+
+/* Dados de exemplo */
+
+addRow(0,171);
+addRow(70,105);
+addRow(90,88);
+
+
+document
+    .getElementById('add')
+    .addEventListener(
+        'click',
+        () => addRow()
+    );
+
+
+/* =========================================
+   REGRESSÃO LINEAR
+========================================= */
+
+function linReg(P) {
+
+    let n = P.length;
+
+    let sx = 0;
+    let sy = 0;
+    let sxx = 0;
+    let sxy = 0;
+
+
+    P.forEach(p => {
+
+        sx += p.x;
+        sy += p.y;
+
+        sxx += p.x * p.x;
+        sxy += p.x * p.y;
+
+    });
+
+
+    let den =
+        n * sxx -
+        sx * sx;
+
+
+    if (!den) {
+        return null;
+    }
+
+
+    let b =
+        (
+            n * sxy -
+            sx * sy
+        ) / den;
+
+
+    let a =
+        (
+            sy -
+            b * sx
+        ) / n;
+
+
+    let mean =
+        sy / n;
+
+
+    let ssTot = 0;
+    let ssRes = 0;
+
+
+    P.forEach(p => {
+
+        let yh =
+            a +
+            b * p.x;
+
+
+        ssTot +=
+            (p.y - mean) ** 2;
+
+
+        ssRes +=
+            (p.y - yh) ** 2;
+
+    });
+
+
+    return {
+
+        a: a,
+
+        b: b,
+
+        r2:
+            ssTot
+                ? 1 - ssRes / ssTot
+                : 1,
+
+        pred:
+            x => a + b * x
+
+    };
+
 }
-function safetyGuidance(s,r){
- const eq=equipmentFor(s),reg=validRegion(s,eq),z=zoneAdvice(eq,reg),critical=r.crossed;
- const equip=EQUIPMENT_NAMES[eq]||'Equipamento não classificado',region=regionLabel(eq,reg);
- let action;
- if(critical&&eq==='LD')action='Retirar o convertedor da operação conforme protocolo local, validar espessura e perfil de desgaste, avaliar carcaça/pontos quentes e submeter a decisão de reparo ou fim de campanha à engenharia responsável. Não liberar operação por esta calculadora.';
- else if(critical&&(eq==='PA'||eq==='PG'))action='Segregar a panela conforme procedimento de integridade, confirmar a medição e programar inspeção a frio pela equipe responsável. Definir reparo, reforma ou descarte após avaliação técnica; não liberar operação pela calculadora.';
- else if(critical)action='Suspender o uso conforme procedimento do equipamento e solicitar avaliação da engenharia responsável; definir a inspeção apropriada antes de qualquer retorno.';
- else if(eq==='LD')action='Manter acompanhamento do mapa laser por região e dos critérios de integridade do convertedor. A projeção não substitui liberação técnica nem autoriza novas corridas.';
- else if(eq==='PA'||eq==='PG')action='Manter inspeções e monitoramento conforme o procedimento da panela. A projeção não substitui os critérios de integridade nem autoriza novas corridas.';
- else action='Confirmar os limites e os procedimentos específicos do equipamento com a engenharia responsável antes de qualquer decisão operacional.';
- return {equip,region,mechanism:z.mechanism,check:z.check,action};
+
+
+/* =========================================
+   REGRESSÃO EXPONENCIAL
+========================================= */
+
+function expReg(P) {
+
+    if (
+        P.some(
+            p => p.y <= 0
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    let L =
+        P.map(
+            p => ({
+                x: p.x,
+                y: Math.log(p.y)
+            })
+        );
+
+
+    let r =
+        linReg(L);
+
+
+    if (!r) {
+        return null;
+    }
+
+
+    let A =
+        Math.exp(r.a);
+
+
+    let k =
+        r.b;
+
+
+    let mean =
+        P.reduce(
+            (s,p) => s + p.y,
+            0
+        ) / P.length;
+
+
+    let tot = 0;
+    let res = 0;
+
+
+    P.forEach(p => {
+
+        let yh =
+            A *
+            Math.exp(
+                k * p.x
+            );
+
+
+        tot +=
+            (p.y - mean) ** 2;
+
+
+        res +=
+            (p.y - yh) ** 2;
+
+    });
+
+
+    return {
+
+        A: A,
+
+        k: k,
+
+        r2:
+            tot
+                ? 1 - res / tot
+                : 1,
+
+        pred:
+            x =>
+                A *
+                Math.exp(
+                    k * x
+                )
+
+    };
+
 }
-sims=sims.map(s=>{const eq=s.equipment||guessEquipment(s.name)||'PA';return {...s,equipment:eq,region:validRegion(s,eq)}});
-nextId=Math.max(0,...sims.map(s=>Number(s.id)||0))+1;
-function evaluate(s){
- const E0=number(s.initial),Ef=number(s.measured),N=number(s.measuredLife),L=number(s.limit),goal=number(s.target);
- if([E0,Ef,N,L,goal].some(v=>!Number.isFinite(v)))return {error:'Preencha todos os cinco campos numéricos.'};
- if(!(E0>0&&Ef>0&&L>0&&N>0&&goal>0))return {error:'Use valores maiores que zero.'};
- if(E0<=Ef)return {error:'A espessura inicial deve ser maior que a espessura medida.'};
- if(E0<=L)return {error:'O limite de segurança deve ser menor que a espessura inicial.'};
- const rate=(E0-Ef)/N;
- const life=(E0-L)/rate;
- const crossed=Ef<=L;
- const remaining=crossed?0:Math.max(0,(Ef-L)/rate);
- const need=Math.max(0,goal-N);
- const margin=Ef-L;
- const atTarget=E0-rate*goal;
- const delta=remaining-need;
- const reached=N>=goal;
- const totalLife=N+remaining; // Nunca projetar vida futura abaixo do limite de segurança.
- return {E0,Ef,N,L,goal,rate,life,remaining,totalLife,need,margin,atTarget,delta,crossed,reached};
+
+
+/* =========================================
+   VIDA PROJETADA
+========================================= */
+
+function lifeLin(r,L) {
+
+    return (
+        r &&
+        r.b < 0
+    )
+        ? (L-r.a) / r.b
+        : null;
+
 }
-function getScenario(id){return sims.find(s=>s.id===id)}
-function updateFromDOM(id){
- const root=document.querySelector(`[data-scenario="${id}"]`);if(!root)return;
- const s=getScenario(id);if(!s)return;
- s.name=root.querySelector('.name').value||`Simulação ${id}`;
- s.equipment=root.querySelector('.equipment').value;
- s.region=root.querySelector('.region').value;
- for(const key of ['initial','target','measured','measuredLife','limit'])s[key]=root.querySelector('.'+key).value;
- persist();
+
+
+function lifeExp(r,L) {
+
+    return (
+        r &&
+        r.k < 0
+    )
+        ? Math.log(
+            L / r.A
+        ) / r.k
+        : null;
+
 }
-function render(){
- const holder=$('scenarios');holder.innerHTML='';
- sims.forEach((s,index)=>{
-  const el=document.createElement('div');el.className='scenario';el.dataset.scenario=s.id;
-  el.innerHTML=`
-  <section class="card">
-   <div class="card-head"><div><div class="tag">CENÁRIO ${index+1}</div><h2>Simulação ${index+1}</h2><p class="description">Uma medição por campanha, além da espessura inicial.</p></div><button class="remove-scenario" type="button">Excluir</button></div>
-   <label>Identificação da simulação</label><input class="name" maxlength="65" value="${esc(s.name)}" placeholder="Ex.: PA 01 · Material A">
-   <div class="filters">
-    <div><label>Tipo de equipamento</label><select class="equipment">
-      <option value="PA" ${s.equipment==='PA'?'selected':''}>Panela de aço (PA)</option>
-      <option value="PG" ${s.equipment==='PG'?'selected':''}>Panela de gusa (PG)</option>
-      <option value="LD" ${s.equipment==='LD'?'selected':''}>Convertedor LD / BOF / Conversor a oxigênio</option>
-      <option value="OUTRO" ${s.equipment==='OUTRO'?'selected':''}>Outro equipamento</option>
-      <option value="AUTO" ${s.equipment==='AUTO'?'selected':''}>Detectar pela identificação</option>
-    </select><div class="field-note">A recomendação muda conforme o equipamento.</div></div>
-    <div><label>Região do revestimento</label><select class="region"></select><div class="field-note">Critérios de inspeção por região.</div></div>
-   </div>
-   <div class="class-note">Classificação: <b class="equipment-detected"></b></div>
-   <div class="fields">
-    <div><label>1. Espessura inicial (mm)</label><input class="initial" type="number" min="0.01" step="any" value="${esc(s.initial)}"><div class="field-note">Revestimento novo, corrida 0</div></div>
-    <div><label>2. Meta (corridas)</label><input class="target" type="number" min="1" step="1" value="${esc(s.target)}"><div class="field-note">Vida desejada da campanha</div></div>
-    <div><label>3. Espessura final — medição (mm)</label><input class="measured" type="number" min="0.01" step="any" value="${esc(s.measured)}"><div class="field-note">Espessura residual medida</div></div>
-    <div><label>4. Vida da medição (corridas)</label><input class="measuredLife" type="number" min="1" step="1" value="${esc(s.measuredLife)}"><div class="field-note">Em qual corrida foi medida?</div></div>
-    <div class="wide"><label>5. Limite de segurança (mm)</label><input class="limit" type="number" min="0.01" step="any" value="${esc(s.limit)}"><div class="field-note">Defina conforme o equipamento, região e procedimento local</div></div>
-   </div>
-   <p class="formula-note">Taxa média = <b>(espessura inicial − espessura medida) ÷ vida da medição</b>.</p>
-   <div class="input-actions"><button class="btn primary small run" type="button">Calcular simulação</button></div>
-   <div class="error" role="status" aria-live="polite"></div>
-  </section>
-  <section class="card result">
-   <div class="result-head"><h2>Resultado ${index+1}</h2><span class="state">Aguardando</span></div>
-   <div class="metrics">
-    <div class="metric feature"><div class="label">1. Corridas adicionais projetadas</div><div class="value life">—</div><div class="note">potencial a partir da medição, até o limite</div></div>
-    <div class="metric"><div class="label">2. Vida total estimada da campanha</div><div class="value totalLife">—</div><div class="note totalLifeNote">vida medida + corridas adicionais projetadas</div></div>
-    <div class="metric"><div class="label">3. Corridas que faltam para a meta</div><div class="value delta">—</div><div class="note">meta − vida da medição, mínimo zero</div></div>
-    <div class="metric"><div class="label">4. Taxa média de desgaste</div><div class="value rate">—</div><div class="note">mm/corrida desde a instalação</div></div>
-    <div class="metric"><div class="label">Espessura residual medida</div><div class="value thickness">—</div><div class="note">mm na vida informada</div></div>
-    <div class="metric"><div class="label">Margem de espessura até o limite</div><div class="value wear">—</div><div class="note">espessura medida − limite, em mm</div></div>
-   </div>
-   <div class="summary"><strong>Aguardando cálculo</strong><span>Informe os dados e calcule.</span></div>
-   <div class="guidance"><h3>Orientação por equipamento e região</h3><p>Preencha os dados para ver a orientação.</p></div>
-   <div class="detail">Projeção linear com uma medição. Corridas adicionais são uma estimativa, não uma liberação operacional. Não há R² nem ajuste exponencial.</div>
-  </section>`;
-  const equipSelect=el.querySelector('.equipment'),regionSelect=el.querySelector('.region');
-  function refreshRegions(){
-   const eq=equipmentFor({...s,equipment:equipSelect.value,name:el.querySelector('.name').value})||'OUTRO';
-   const options=regionsFor(eq),old=regionSelect.value||s.region;
-   regionSelect.innerHTML=options.map(([val,label])=>`<option value="${val}">${label}</option>`).join('');
-   regionSelect.value=options.some(o=>o[0]===old)?old:options[0][0];
-   el.querySelector('.equipment-detected').textContent=EQUIPMENT_NAMES[eq]||'Não identificado — selecione o tipo';
-  }
-  refreshRegions();
-  equipSelect.addEventListener('change',()=>{refreshRegions();el.querySelector('.limit').value='';updateFromDOM(s.id);recalculate(s.id)});
-  regionSelect.addEventListener('change',()=>{el.querySelector('.limit').value='';updateFromDOM(s.id);recalculate(s.id)});
-  el.querySelector('.run').onclick=()=>{updateFromDOM(s.id);recalculate(s.id)};
-  el.querySelector('.remove-scenario').onclick=()=>{if(sims.length<=1){alert('Mantenha pelo menos uma simulação.');return}if(!confirm(`Excluir ${s.name}?`))return;sims=sims.filter(v=>v.id!==s.id);delete outcomes[s.id];persist();render()};
-  el.querySelectorAll('input').forEach(inp=>inp.addEventListener('input',()=>{if(inp.classList.contains('name')&&equipSelect.value==='AUTO')refreshRegions();updateFromDOM(s.id);recalculate(s.id)}));
-  holder.appendChild(el);
- });
- $('scenarioCount').textContent=`${sims.length} simulação(ões)`;
- sims.forEach(s=>recalculate(s.id,false));drawComparison();
+
+
+/* =========================================
+   FORMATAÇÃO
+========================================= */
+
+function fmt(v,d=1) {
+
+    return Number.isFinite(v)
+
+        ? v
+            .toFixed(d)
+            .replace('.',',')
+
+        : '—';
+
 }
-function recalculate(id,redraw=true){
- const root=document.querySelector(`[data-scenario="${id}"]`),s=getScenario(id);if(!root||!s)return;
- const r=evaluate(s);outcomes[id]=r;
- const result=root.querySelector('.result'),state=result.querySelector('.state'),summary=result.querySelector('.summary'),error=root.querySelector('.error');
- error.textContent=r.error||'';
- if(r.error){
-  for(const cls of ['life','totalLife','delta','rate','thickness','wear'])result.querySelector('.'+cls).textContent='—';
-  result.querySelector('.guidance').innerHTML='<h3>Orientação por equipamento e região</h3><p>Preencha os dados válidos para obter recomendações de avaliação.</p>';
-  result.querySelector('.totalLifeNote').textContent='vida medida + corridas adicionais projetadas';
-  state.className='state';state.textContent='Dados incompletos';summary.className='summary';
-  summary.innerHTML='<strong>Revise os dados</strong><span>O gráfico será atualizado quando os valores estiverem válidos.</span>';
- }else{
-  result.querySelector('.life').textContent=`${fmt(r.remaining,1)} corridas`;
-  result.querySelector('.delta').textContent=`${fmt(r.need,1)} corridas`;
-  result.querySelector('.rate').textContent=fmt(r.rate,3);
-  result.querySelector('.totalLife').textContent=`${fmt(r.totalLife,1)} corridas`;
-  result.querySelector('.totalLifeNote').textContent=`${fmt(r.N,0)} já realizadas + ${fmt(r.remaining,1)} adicionais${r.crossed?' (limite atingido)':''}`;
-  result.querySelector('.thickness').textContent=`${fmt(r.Ef,1)} mm`;
-  result.querySelector('.wear').textContent=`${r.margin>=0?'+':''}${fmt(r.margin,1)} mm`;
-  const cls=r.crossed?'bad':r.reached?'ok':r.remaining>=r.need?'ok':'warn';
-  state.className='state '+cls;
-  state.textContent=r.crossed?(r.Ef<r.L?'Abaixo do limite':'No limite'):r.reached?'Meta já alcançada':r.remaining>=r.need?'Potencial ≥ meta':'Potencial < meta';
-  summary.className='summary '+cls;
-  const g=safetyGuidance(s,r),guide=result.querySelector('.guidance');
-  guide.className='guidance'+(r.crossed?' critical':'');
-  guide.innerHTML=`<h3>${r.crossed?'Ação requerida — limite atingido':'Avaliação técnica por região'}</h3><p><b>Equipamento:</b> ${esc(g.equip)} · <b>Região:</b> ${esc(g.region)}</p><p><b>Mecanismos a investigar:</b> ${esc(g.mechanism)}</p><p><b>Verificações sugeridas:</b> ${esc(g.check)}</p><p><b>Encaminhamento:</b> ${esc(g.action)}</p>`;
-  if(r.crossed){
-    const condition=r.Ef<r.L?'abaixo':'no';
-    const gap=Math.abs(r.margin);
-    summary.innerHTML=`<strong>${equipmentFor(s)==='LD'?'Ação técnica: avaliar integridade do convertedor':equipmentFor(s)==='PA'||equipmentFor(s)==='PG'?'Recomendação técnica: segregar e avaliar a frio':'Ação técnica: retirar de uso conforme protocolo'}</strong><span>A espessura residual medida (${fmt(r.Ef,1)} mm) está ${condition==='abaixo'?'abaixo do':'no'} limite informado (${fmt(r.L,1)} mm)${r.Ef<r.L?`, com déficit de ${fmt(gap,1)} mm`:''}. <b>Corridas adicionais projetadas: 0; vida acumulada: ${fmt(r.totalLife,1)} corridas.</b> Não recomendar continuidade com base nesta simulação. Consultar a orientação específica para o equipamento e a região abaixo. A estimativa linear teria alcançado o limite por volta da corrida ${fmt(r.life,1)}, anterior à medição na corrida ${fmt(r.N,0)}; esse valor é apenas retrospectivo.</span>`;
-  }else if(r.reached){
-    summary.innerHTML=`<strong>Meta de corridas já alcançada</strong><span>A campanha está na corrida ${fmt(r.N,0)} e a meta era ${fmt(r.goal,0)}. Há ${fmt(r.remaining,1)} corridas adicionais estimadas pela taxa média, com vida total estimada de ${fmt(r.totalLife,1)} corridas até o limite informado, sujeitas a inspeção e critérios operacionais. Não constitui liberação para continuar.</span>`;
-  }else{
-    const enough=r.remaining>=r.need;
-    summary.innerHTML=`<strong>${enough?'Projeção indica potencial para atingir a meta':'Projeção indica potencial inferior ao necessário para a meta'}</strong><span>O equipamento está na corrida ${fmt(r.N,0)}. Faltam ${fmt(r.need,1)} corridas para a meta de ${fmt(r.goal,0)}; a projeção linear estima ${fmt(r.remaining,1)} corridas adicionais a partir da medição, totalizando ${fmt(r.totalLife,1)} corridas de vida estimada. ${enough?'Folga estimada: '+fmt(r.delta,1)+' corridas.':'Déficit estimado: '+fmt(-r.delta,1)+' corridas.'} Resultado sujeito a inspeção e aos critérios de segurança.</span>`;
-  }
-  result.querySelector('.detail').innerHTML=`Taxa média: (${fmt(r.E0,1)} − ${fmt(r.Ef,1)}) ÷ ${fmt(r.N,0)} = <b>${fmt(r.rate,3)} mm/corrida</b>. Projeção linear; a taxa futura pode variar.`;
- }
- if(redraw)drawComparison();
+
+
+/* =========================================
+   GRÁFICO
+========================================= */
+
+function draw(
+    P,
+    lin,
+    exp,
+    L,
+    target,
+    l1,
+    l2
+) {
+
+    const c =
+        document.getElementById('chart');
+
+
+    const ctx =
+        c.getContext('2d');
+
+
+    const W =
+        c.width;
+
+
+    const H =
+        c.height;
+
+
+    const pad = {
+
+        l: 54,
+        r: 18,
+        t: 20,
+        b: 42
+
+    };
+
+
+    ctx.clearRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+
+    ctx.fillStyle =
+        '#161B26';
+
+
+    ctx.fillRect(
+        0,
+        0,
+        W,
+        H
+    );
+
+
+    let maxX =
+        Math.max(
+            target,
+            ...P.map(p=>p.x),
+            Number.isFinite(l1) ? l1 : 0,
+            Number.isFinite(l2) ? l2 : 0
+        ) * 1.08;
+
+
+    maxX =
+        Math.max(
+            maxX,
+            10
+        );
+
+
+    let maxY =
+        Math.max(
+            ...P.map(p=>p.y),
+            lin ? lin.pred(0) : 0,
+            exp ? exp.pred(0) : 0
+        ) * 1.12;
+
+
+    let minY = 0;
+
+
+    const X =
+        x =>
+            pad.l +
+            x / maxX *
+            (
+                W -
+                pad.l -
+                pad.r
+            );
+
+
+    const Y =
+        y =>
+            H -
+            pad.b -
+            (
+                y -
+                minY
+            ) /
+            (
+                maxY -
+                minY
+            ) *
+            (
+                H -
+                pad.t -
+                pad.b
+            );
+
+
+    ctx.font =
+        '11px JetBrains Mono';
+
+
+    ctx.fillStyle =
+        '#7A8194';
+
+
+    ctx.strokeStyle =
+        'rgba(255,255,255,.08)';
+
+
+    ctx.lineWidth = 1;
+
+
+    /* Linhas horizontais */
+
+    for (
+        let i=0;
+        i<=5;
+        i++
+    ) {
+
+        let y =
+            maxY *
+            i / 5;
+
+
+        let py =
+            Y(y);
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            pad.l,
+            py
+        );
+
+        ctx.lineTo(
+            W-pad.r,
+            py
+        );
+
+        ctx.stroke();
+
+
+        ctx.fillText(
+            Math.round(y) +
+            ' mm',
+            6,
+            py+4
+        );
+
+    }
+
+
+    /* Eixo X */
+
+    for (
+        let i=0;
+        i<=5;
+        i++
+    ) {
+
+        let x =
+            maxX *
+            i / 5;
+
+
+        let px =
+            X(x);
+
+
+        ctx.fillText(
+            Math.round(x),
+            px-8,
+            H-16
+        );
+
+    }
+
+
+    /* Curvas */
+
+    function curve(
+        pred,
+        color,
+        end=maxX
+    ) {
+
+        ctx.strokeStyle =
+            color;
+
+
+        ctx.lineWidth =
+            2.5;
+
+
+        ctx.beginPath();
+
+
+        for (
+            let i=0;
+            i<=160;
+            i++
+        ) {
+
+            let x =
+                end *
+                i / 160;
+
+
+            let y =
+                pred(x);
+
+
+            if (
+                !Number.isFinite(y)
+            ) {
+                continue;
+            }
+
+
+            let px =
+                X(x);
+
+
+            let py =
+                Y(y);
+
+
+            if (i) {
+
+                ctx.lineTo(
+                    px,
+                    py
+                );
+
+            } else {
+
+                ctx.moveTo(
+                    px,
+                    py
+                );
+
+            }
+
+        }
+
+
+        ctx.stroke();
+
+    }
+
+
+    curve(
+        lin.pred,
+        '#4E8BAB'
+    );
+
+
+    curve(
+        exp.pred,
+        '#E8740A'
+    );
+
+
+    /* Limite de segurança */
+
+    ctx.strokeStyle =
+        '#d45d5d';
+
+
+    ctx.setLineDash(
+        [7,6]
+    );
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+        pad.l,
+        Y(L)
+    );
+
+
+    ctx.lineTo(
+        W-pad.r,
+        Y(L)
+    );
+
+
+    ctx.stroke();
+
+
+    ctx.setLineDash([]);
+
+
+    /* Pontos reais */
+
+    P.forEach(p => {
+
+        ctx.fillStyle =
+            '#EDE8E1';
+
+
+        ctx.beginPath();
+
+
+        ctx.arc(
+            X(p.x),
+            Y(p.y),
+            5,
+            0,
+            Math.PI*2
+        );
+
+
+        ctx.fill();
+
+
+        ctx.strokeStyle =
+            '#090B11';
+
+
+        ctx.lineWidth =
+            2;
+
+
+        ctx.stroke();
+
+    });
+
+
+    ctx.fillStyle =
+        '#7A8194';
+
+
+    ctx.fillText(
+        'corridas',
+        W-68,
+        H-16
+    );
+
 }
-function drawComparison(){
- const chart=$('chart'),axis=$('axis');chart.innerHTML='';axis.innerHTML='';
- const valid=sims.map(s=>({s,r:outcomes[s.id]})).filter(v=>v.r&&!v.r.error&&Number.isFinite(v.r.remaining));
- if(!valid.length){chart.innerHTML='<div class="empty">Preencha ao menos uma simulação para visualizar o comparativo.</div>';return}
- const max=Math.max(10,...valid.flatMap(v=>[v.r.remaining,v.r.need]))*1.06;
- valid.forEach(({s,r})=>{
-  const row=document.createElement('div');row.className='chart-row';
-  const lp=Math.min(100,Math.max(0,100*r.remaining/max)),gp=Math.min(100,Math.max(0,100*r.need/max));
-  const deficit=r.need-r.remaining;
-  const situation=r.crossed?'Limite atingido':r.reached?'Meta já alcançada':deficit>0?`Faltam ${fmt(deficit,1)} além da projeção`:`Folga ${fmt(-deficit,1)} corridas`;
-  row.innerHTML=`<div class="chart-name">${esc(s.name)}<small>${esc(EQUIPMENT_NAMES[equipmentFor(s)]||'Equipamento')} · ${esc(regionLabel(equipmentFor(s),validRegion(s,equipmentFor(s))))}<br>Medida na corrida ${fmt(r.N,0)} · residual ${fmt(r.Ef,1)} mm</small></div><div class="bars"><div class="track" title="Corridas adicionais projetadas: ${fmt(r.remaining,1)}"><div class="bar life" style="width:${lp}%">${lp>14?fmt(r.remaining,1):''}</div></div><div class="track" title="Corridas que faltam para a meta: ${fmt(r.need,1)}"><div class="bar goal" style="width:${gp}%">${gp>14?fmt(r.need,1):''}</div></div></div><div class="chart-value ${r.crossed||deficit>0?'negative':'positive'}">${r.crossed?'0 corridas':fmt(r.remaining,1)+' corridas'}<small>${situation}</small></div>`;
-  chart.appendChild(row);
- });
- axis.innerHTML=`<span></span><div class="ticks"><span>0</span><span>${fmt(max/4,0)}</span><span>${fmt(max/2,0)}</span><span>${fmt(3*max/4,0)}</span><span>${fmt(max,0)} corridas</span></div><span></span>`;
+
+
+/* =========================================
+   CÁLCULO PRINCIPAL
+========================================= */
+
+function calculate() {
+
+    const msg =
+        document.getElementById(
+            'message'
+        );
+
+
+    msg.textContent = '';
+
+
+    let P =
+        [
+            ...box.querySelectorAll(
+                '.measure'
+            )
+        ]
+
+        .map(
+            r => ({
+
+                x:
+                    +r.querySelector(
+                        '.x'
+                    ).value,
+
+                y:
+                    +r.querySelector(
+                        '.y'
+                    ).value
+
+            })
+        )
+
+        .filter(
+            p =>
+                Number.isFinite(p.x) &&
+                Number.isFinite(p.y) &&
+                p.x >= 0 &&
+                p.y > 0
+        )
+
+        .sort(
+            (a,b) =>
+                a.x-b.x
+        );
+
+
+    const L =
+        +document.getElementById(
+            'limit'
+        ).value;
+
+
+    const target =
+        +document.getElementById(
+            'target'
+        ).value;
+
+
+    if (
+        P.length < 2 ||
+        !(L > 0) ||
+        !(target > 0)
+    ) {
+
+        msg.textContent =
+            'Informe pelo menos duas medições válidas, limite e meta.';
+
+        return;
+
+    }
+
+
+    if (
+        new Set(
+            P.map(
+                p=>p.x
+            )
+        ).size < 2
+    ) {
+
+        msg.textContent =
+            'As medições precisam ter números de corridas diferentes.';
+
+        return;
+
+    }
+
+
+    const lin =
+        linReg(P);
+
+
+    const exp =
+        expReg(P);
+
+
+    if (
+        !lin ||
+        !exp
+    ) {
+
+        msg.textContent =
+            'Não foi possível ajustar os modelos com esses dados.';
+
+        return;
+
+    }
+
+
+    const first =
+        P[0];
+
+
+    const last =
+        P[P.length-1];
+
+
+    const rate =
+        (
+            first.y -
+            last.y
+        ) /
+        (
+            last.x -
+            first.x
+        );
+
+
+    const l1 =
+        lifeLin(
+            lin,
+            L
+        );
+
+
+    const l2 =
+        lifeExp(
+            exp,
+            L
+        );
+
+
+    const best =
+        exp.r2 >
+        lin.r2
+            ? exp
+            : lin;
+
+
+    const bestName =
+        exp.r2 >
+        lin.r2
+            ? 'Exponencial'
+            : 'Linear';
+
+
+    const predTarget =
+        best.pred(
+            target
+        );
+
+
+    const bestLife =
+        best === exp
+            ? l2
+            : l1;
+
+
+    /* Resultados */
+
+    document
+        .getElementById(
+            'rate'
+        )
+        .textContent =
+            fmt(
+                rate,
+                3
+            );
+
+
+    document
+        .getElementById(
+            'lifeLinear'
+        )
+        .textContent =
+
+            Number.isFinite(l1)
+
+            ? Math.round(l1) +
+              ' corridas'
+
+            : '—';
+
+
+    document
+        .getElementById(
+            'lifeExp'
+        )
+        .textContent =
+
+            Number.isFinite(l2)
+
+            ? Math.round(l2) +
+              ' corridas'
+
+            : '—';
+
+
+    document
+        .getElementById(
+            'atTarget'
+        )
+        .textContent =
+
+            fmt(
+                predTarget,
+                1
+            ) +
+            ' mm';
+
+
+    /* Status */
+
+    const s =
+        document.getElementById(
+            'status'
+        );
+
+
+    s.className =
+        'status ' +
+        (
+            bestLife >= target
+
+            ? 'ok'
+
+            : bestLife >= target*.9
+
+                ? 'warn'
+
+                : 'bad'
+        );
+
+
+    if (
+        bestLife >= target
+    ) {
+
+        s.innerHTML = `
+
+            <strong>
+                Meta projetada como atingível
+            </strong>
+
+            <span>
+
+                O modelo ${bestName}
+                (R² ${fmt(best.r2,3)})
+                projeta o limite em aproximadamente
+                ${Math.round(bestLife)}
+                corridas.
+
+            </span>
+
+        `;
+
+    }
+
+    else {
+
+        s.innerHTML = `
+
+            <strong>
+
+                ${
+                    bestLife >= target*.9
+
+                    ? 'Atenção à campanha'
+
+                    : 'Meta não sustentada pela projeção'
+                }
+
+            </strong>
+
+            <span>
+
+                O modelo ${bestName}
+                (R² ${fmt(best.r2,3)})
+                projeta o limite em aproximadamente
+                ${Math.round(bestLife)}
+                corridas,
+
+                antes da meta de
+                ${Math.round(target)}.
+
+            </span>
+
+        `;
+
+    }
+
+
+    document
+        .getElementById(
+            'model'
+        )
+        .innerHTML = `
+
+            Melhor ajuste:
+            <b>${bestName}</b>
+
+            · R² linear:
+            <b>${fmt(lin.r2,3)}</b>
+
+            · R² exponencial:
+            <b>${fmt(exp.r2,3)}</b>.
+
+            <br>
+
+            A projeção é uma estimativa matemática
+            e não substitui inspeção,
+            critérios de segurança
+            ou avaliação de engenharia.
+
+        `;
+
+
+    draw(
+        P,
+        lin,
+        exp,
+        L,
+        target,
+        l1,
+        l2
+    );
+
 }
-$('addScenario').onclick=()=>{
- const id=nextId++;
- sims.push({id,name:`Simulação ${sims.length+1}`,equipment:'PA',region:'linha_escoria',initial:'',target:'120',measured:'',measuredLife:'',limit:''});
- persist();render();document.querySelector(`[data-scenario="${id}"]`).scrollIntoView({behavior:'smooth',block:'start'});
-};
-$('calcAll').onclick=()=>{sims.forEach(s=>updateFromDOM(s.id));sims.forEach(s=>recalculate(s.id,false));drawComparison()};
-render();
+
+
+/* BOTÃO CALCULAR */
+
+document
+    .getElementById(
+        'calc'
+    )
+    .addEventListener(
+        'click',
+        calculate
+    );
+
+
+/* PRIMEIRO CÁLCULO AUTOMÁTICO */
+
+calculate();
+
 </script>
-<script>document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(!h||h.startsWith('#')||/^(https?:|mailto:|tel:|javascript:|data:)/i.test(h))return;if(!/\.html(?:[?#]|$)/i.test(h))return;if(window.parent===window)return;e.preventDefault();window.parent.postMessage({tsa_route:h},'*');});</script><script id="tsa-shared-navigation-script">
-(function(){
- document.querySelectorAll('.tsa-site-header .tsa-drop > button').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();var box=b.parentElement;document.querySelectorAll('.tsa-site-header .tsa-drop').forEach(function(p){if(p!==box){p.classList.remove('is-open');var other=p.querySelector('button');if(other)other.setAttribute('aria-expanded','false')}});var open=box.classList.toggle('is-open');b.setAttribute('aria-expanded',String(open))})});
- document.addEventListener('click',function(e){document.querySelectorAll('.tsa-site-header .tsa-drop.is-open').forEach(function(p){if(!p.contains(e.target)){p.classList.remove('is-open');p.querySelector('button').setAttribute('aria-expanded','false')}})});
- document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.tsa-site-header .tsa-drop.is-open').forEach(function(p){p.classList.remove('is-open');p.querySelector('button').setAttribute('aria-expanded','false')})});
-})();
-</script></body>
+
+</body>
 </html>
